@@ -43,6 +43,14 @@
 /*    letter-spacing: 3px;*/
 /*}*/
 
+.profileText {
+    background: conic-gradient(from 217.4deg at 14.22% 13.32%, #3EFFC4 0deg, #C1FFEC 123.75deg, #2B4B43 234.38deg, #3EFFC4 360deg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
 .logoutIcon {
     transform: rotate(180deg);
 }
