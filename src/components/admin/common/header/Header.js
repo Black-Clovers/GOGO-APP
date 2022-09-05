@@ -1,6 +1,7 @@
 import React from 'react';
 import './header.css';
 import logo from '../../../../assets/logo/logo.svg';
+import {Link} from "react-router-dom";
 
 const Header = () => {
     return (
@@ -17,13 +18,14 @@ const Header = () => {
                 <div className="col-5 d-flex justify-content-end">
                     <ul className="mb-0">
                         <li className="mt-1">
-                            <p className="d-inline me-2"><i className="fa fa-sign-out logoutIcon" aria-hidden="true"/></p>
-                            <p className="d-inline ms-2 me-2 fw-bold">Madhusha</p>
+                            <p className="d-inline me-2"><i className="fa fa-sign-out logoutIcon" aria-hidden="true"/>
+                            </p>
+                            <p className="d-inline ms-2 me-2 fw-bold profileText">Madhusha</p>
                         </li>
                         <li>
-                            <a href="#">
+                            <Link to="/client">
                                 <i className="fas fa-user"/>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
