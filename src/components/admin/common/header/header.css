@@ -4,6 +4,7 @@
     display: flex;
     position: fixed;
     top: 10px;
+    left: 10px;
 }
 
 .wrapper .top_navbar .hamburger {
@@ -31,15 +32,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    /*padding: 0 20px;*/
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-.wrapper .top_navbar .top_menu .logo {
-    color: #2e4ead;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 3px;
+/*.wrapper .top_navbar .top_menu .logo {*/
+/*    color: #2e4ead;*/
+/*    font-size: 20px;*/
+/*    font-weight: 700;*/
+/*    letter-spacing: 3px;*/
+/*}*/
+
+.logoutIcon {
+    transform: rotate(180deg);
 }
 
 .wrapper .top_navbar .top_menu ul {
@@ -64,17 +69,4 @@
 
 .wrapper .top_navbar .top_menu ul li a:hover i {
     color: #fff;
-}
-
-.profileName {
-    background: conic-gradient(from 217.4deg at 14.22% 13.32%, #3EFFC4 0deg, #C1FFEC 123.75deg, #2B4B43 234.38deg, #3EFFC4 360deg);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 28px
 }
