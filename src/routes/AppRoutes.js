@@ -1,4 +1,3 @@
-import React from "react";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Dashboard from '../pages/admin/dashboard/dashboard'
 import Header from "../components/admin/common/header/Header";
@@ -12,6 +11,8 @@ const AppRoutes = () => {
                 <Sidebar/>
                 <Routes>
                     <Route path="/" element={<Dashboard/>} exact={true}/>
+                    <Route path="/dashboard" element={<Dashboard/>} exact={true}/>
+                    <Route path="/package" element={<Package/>} exact={true}/>
                     {/*<Route path="/dashboard" element={<Dashboard/>} exact={true}/>*/}
                 </Routes>
             </Router>
