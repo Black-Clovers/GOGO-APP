@@ -5,6 +5,7 @@ import Sidebar from "../components/admin/common/sidebar/Sidebar";
 import Client from "../pages/admin/client/client";
 import Package from "../pages/admin/travelpackage/TravelPackage";
 
+
 const AppRoutes = () => {
     return (
         <div>
