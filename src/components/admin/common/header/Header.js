@@ -1,28 +1,33 @@
+import React from 'react';
 import './header.css';
+import logo from '../../../../assets/logo/logo.svg';
 
-const Header = (props) => {
+const Header = () => {
     return (
         <div className="top_navbar">
             <div className="hamburger">
-                <div className="one"></div>
-                <div className="two"></div>
-                <div className="three"></div>
+                <div className="one"/>
+                <div className="two"/>
+                <div className="three"/>
             </div>
-            <div className="top_menu d-flex justify-content-around">
-                <div className="logo col-6 ms-lg-5 ps-lg-5 ms-sm-0 ps-sm-0 ms-md-0 ps-md-0">
-                    {/*<img src={logo} alt=""/>*/}
+            <div className="col-12 top_menu">
+                <div className="col-7  d-flex justify-content-end">
+                    <img src={logo} alt=""/>
                 </div>
-                <ul className="mb-0 col-6 d-flex justify-content-end">
-                    <li className="mt-1">
-                        <p className="d-inline me-2"><i className="fa-solid fa-arrow-left-long"></i></p>
-                        <p className="d-inline ms-2 me-2 profileName">Madhusha</p>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i className="fas fa-user"></i>
-                        </a>
-                    </li>
-                </ul>
+                <div className="col-5 d-flex justify-content-end">
+                    <ul className="mb-0">
+                        <li className="mt-1">
+                            <p className="d-inline me-2"><i className="fa fa-sign-out logoutIcon" aria-hidden="true"/></p>
+                            <p className="d-inline ms-2 me-2 fw-bold">Madhusha</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i className="fas fa-user"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </div>
     );
