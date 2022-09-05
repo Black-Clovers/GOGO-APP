@@ -5,9 +5,7 @@ import AdminLayout from "./layout/adminLayout";
 function App() {
     return (
         <AdminLayout class="wrapper">
-            <div className="App">
-                <AppRoutes/>
-            </div>
+            <AppRoutes/>
         </AdminLayout>
     );
 }

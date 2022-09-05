@@ -1,0 +1,72 @@
+.wrapper .sidebar {
+    position: fixed;
+    top: 70px;
+    left: 10px;
+    background: linear-gradient(0deg, #2B4B43, #2B4B43);
+    width: 200px;
+    height: calc(100% - 80px);
+    border-bottom-left-radius: 20px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.wrapper .sidebar ul li a {
+    display: block;
+    padding: 20px;
+    position: relative;
+    margin-bottom: 1px;
+    color: #FFFFFF;
+    white-space: nowrap;
+}
+
+.wrapper .sidebar ul li a:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: conic-gradient(from 208.67deg at 9.44% -12.5%, #3EFFC4 0deg, #C1FFEC 123.75deg, #2B4B43 234.38deg, #3EFFC4 360deg);
+    display: none;
+}
+
+.wrapper .sidebar ul li a span.icon {
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.wrapper .sidebar ul li a span.title {
+    display: inline-block;
+}
+
+.wrapper .sidebar ul li a:hover,
+.wrapper .sidebar ul li a.active {
+    background: conic-gradient(from 208.67deg at 9.44% -12.5%, #3EFFC4 0deg, #C1FFEC 123.75deg, #2B4B43 234.38deg, #3EFFC4 360deg);
+    color: #000000;
+    font-weight: bold;
+}
+
+.wrapper .sidebar ul li a:hover:before,
+.wrapper .sidebar ul li a.active:before {
+    display: block;
+}
+
+.wrapper.collapse .sidebar {
+    width: 70px;
+}
+
+.wrapper.collapse .sidebar ul li a {
+    text-align: center;
+}
+
+.wrapper.collapse .sidebar ul li a span.icon {
+    margin: 0;
+}
+
+.wrapper.collapse .sidebar ul li a span.title {
+    display: none;
+}
+
+ul {
+    padding-left: 0;
+}
