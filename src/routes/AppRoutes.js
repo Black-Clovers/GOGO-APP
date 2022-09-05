@@ -6,6 +6,7 @@ import Client from "../pages/admin/client/client";
 import Package from "../pages/admin/travelpackage/TravelPackage";
 import Addvacancy from "../pages/client/career/addVacancy";
 
+
 const AppRoutes = () => {
     return (
         <div>
