@@ -4,6 +4,8 @@ import Header from "../components/admin/common/header/Header";
 import Sidebar from "../components/admin/common/sidebar/Sidebar";
 import Client from "../pages/admin/client/client";
 import Package from "../pages/admin/travelpackage/TravelPackage";
+import Addvacancy from "../pages/client/career/addVacancy";
+
 
 const AppRoutes = () => {
     return (
