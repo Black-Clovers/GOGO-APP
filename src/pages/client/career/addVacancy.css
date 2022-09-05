@@ -1,0 +1,11 @@
+.vacancyheaderbar{
+    position: absolute;
+    width: 1106px;
+    height: 53px;
+    left: 290px;
+    top: 135px;
+    
+    background: #FFFFFF;
+    border-radius: 16px;
+
+}
