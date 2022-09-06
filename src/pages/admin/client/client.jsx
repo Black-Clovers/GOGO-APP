@@ -16,6 +16,38 @@ const Client = () => {
         })
     };
 
+    const displayAllClients = () => {
+        return clients.map((client) => {
+            return (<tr itemScope="row" id={client._id} key={client._id}>
+                <td>
+                    {client.client_ID}
+                </td>
+                <td>{client.client_FirstName}</td>
+                <td>
+                    {client.client_LastName}
+                </td>
+                <td>
+                    <img src={client.client_profilePicture} alt="profile picture" width={25} height={25}/>
+                </td>
+                <td> {client.client_UserName}</td>
+                <td> {client.client_Address}</td>
+                <td> {client.client_Mobile}</td>
+                <td> {client.client_Email}</td>
+                <td> {client.client_Gender}</td>
+                <td> {client.client_NIC}</td>
+                {/*<td> {client.client_Password}</td>*/}
+
+                <td> {client.client_DOB}</td>
+                <td> {client.client_Status}</td>
+
+                <td>
+                    <i className="fa-solid fa-pen me-3 text-primary d-inline"/>
+                    <i className="fa-solid fa-trash-can d-inline me-2 text-danger d-inline"/>
+                </td>
+            </tr>)
+        });
+    };
+
 
     return (
         <div>
