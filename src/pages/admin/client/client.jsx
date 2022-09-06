@@ -1,8 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../client/client.css';
+import axios from 'axios'
 
 
 const Client = () => {
+    const [clients, setClients] = useState([]);
+
+    useEffect(() => {
+        getAll();
+    }, [])
+
+    const getAll = () => {
+        axios.get("http://localhost:8000/api/client/all/").then((response) => {
+            setClients(response.data.data);
+        })
+    };
+
+
     return (
         <div>
             <div className="main_container">
@@ -15,8 +29,7 @@ const Client = () => {
                             <div className=" col-lg-6 col-md-12 col-sm-12">
                                 <div className="row">
                                     <div className="d-flex justify-content-start align-items-center">
-                                        <button id="btn-generate-report" className="btn me-3">Generate Report
-                                        </button>
+                                        <button id="btn-generate-report" className="btn me-3">Generate Report</button>
                                     </div>
                                 </div>
                             </div>
@@ -29,7 +42,7 @@ const Client = () => {
                                         </div>
                                         <div>
                                             <input type="button" className="form-control btnSearch text-white"
-                                                   value="Search"/>
+                                                   defaultValue="Search"/>
                                         </div>
                                     </div>
                                 </div>
@@ -88,9 +101,9 @@ const Client = () => {
                             <div className="row mt-4">
                                 <div className="col">
                                     <select name="gender" className="form-select" aria-label="role">
-                                        <option selected disabled value="0">Gender</option>
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
+                                        {/*<option selected={true} disabled defaultValue="0">Gender</option>*/}
+                                        {/*<option defaultValue="1">Male</option>*/}
+                                        {/*<option defaultValue="2">Female</option>*/}
                                     </select>
                                 </div>
                                 <div className="col">
@@ -101,11 +114,11 @@ const Client = () => {
                                            onFocus={(e) => e.target.type = 'date'} id="dateOfBirth"/>
                                 </div>
                                 <div className="col">
-                                    <select name="status" className="form-select" aria-label="role">
-                                        <option selected disabled value="0">Status</option>
-                                        <option value="1">Online</option>
-                                        <option value="2">Offline</option>
-                                    </select>
+                                    {/*<select name="status" className="form-select" aria-label="role">*/}
+                                    {/*    <option selected disabled value="0">Status</option>*/}
+                                    {/*    <option value="1">Online</option>*/}
+                                    {/*    <option value="2">Offline</option>*/}
+                                    {/*</select>*/}
                                 </div>
                             </div>
                             <div className="row mt-5">
@@ -127,17 +140,20 @@ const Client = () => {
                                     <th scope="col">ID</th>
                                     <th scope="col">First Name</th>
                                     <th scope="col">Last Name</th>
+                                    <th scope="col">Profile Picture</th>
                                     <th scope="col">User Name</th>
                                     <th scope="col">Address</th>
                                     <th scope="col">Mobile</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Gender</th>
+                                    <th scope="col">NIC</th>
                                     <th scope="col">DOB</th>
                                     <th scope="col">Status</th>
                                     <th scope="col"/>
                                 </tr>
                                 </thead>
                                 <tbody>
-
+                                {displayAllClients()}
                                 </tbody>
                             </table>
                         </div>
