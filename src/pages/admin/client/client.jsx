@@ -13,7 +13,7 @@ const Client = () => {
     const [client_Email, setClient_Email] = useState("");
     const [client_Mobile, setClient_Mobile] = useState("");
     const [client_NIC, setClient_NIC] = useState("");
-    const [client_Password, setClient_Password] = useState("");
+    const [client_Password, setClient_Password] = useState("12345");
     const [client_Gender, setClient_Gender] = useState("");
     const [client_DOB, setClient_DOB] = useState("");
     const [client_Status, setClient_Status] = useState("");
@@ -228,6 +228,18 @@ const Client = () => {
         })
     }
 
+    const searchClient = () => {
+        if (client_ID === null || client_ID === undefined || client_ID === "") {
+            alert("Please insert the client ID");
+        } else {
+            axios.get(`http://localhost:8000/api/client/${client_ID}`).then((response) => {
+                let searchedClient = [];
+                searchedClient.push(response.data.data)
+                setClients(searchedClient);
+            })
+        }
+    };
+
     return (
         <div>
             <div className="main_container">
@@ -241,22 +253,6 @@ const Client = () => {
                                 <div className="row">
                                     <div className="d-flex justify-content-start align-items-center">
                                         <button id="btn-generate-report" className="btn me-3">Generate Report</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className=" col-lg-6 col-md-12 col-sm-12">
-                                <div className="row">
-                                    <div className="d-flex justify-content-end align-items-center">
-                                        <div className="d-flex justify-content-center align-items-center">
-                                            <input id="searchID" type="text" className="form-control col-8 me-5"
-                                                   placeholder="ID" onChange={(e) => {
-                                                setClient_ID(e.target.value)
-                                            }}/>
-                                        </div>
-                                        <div>
-                                            <input type="button" className="form-control btnSearch text-white"
-                                                   defaultValue="Search"/>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -404,8 +400,28 @@ const Client = () => {
                         </form>
                     </div>
                     <div className="row mt-5 px-3">
-                        <h6 className="mb-0 fw-bold mt-2 mb-2">Client</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <div className="col-6">
+                            <h6 className="mb-0 fw-bold mt-2">Client</h6>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                        <div className="col-6">
+                            <div className="d-flex justify-content-end align-items-center">
+                                <div className="d-flex justify-content-center align-items-center">
+                                    <input id="searchID" type="text" className="form-control col-8 me-5"
+                                           placeholder="ID" onChange={(e) => {
+                                        setClient_ID(e.target.value)
+                                    }}/>
+                                </div>
+                                <div>
+                                    <input type="button" className="form-control btnSearch text-white"
+                                           defaultValue="Search" onClick={() => {
+                                        searchClient()
+                                    }}/>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div className="table-responsive">
                             <table className="table table-striped custom-table" id="assignLabsTable">
                                 <thead>
