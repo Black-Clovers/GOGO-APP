@@ -21,6 +21,8 @@ const Client = () => {
 
     useEffect(() => {
         getAll();
+        document.getElementById("btnEditImg").setAttribute("disabled", "true");
+        document.getElementById("btnImgDelete").setAttribute("disabled", "true");
     }, []);
 
 
@@ -31,11 +33,31 @@ const Client = () => {
         })
     };
 
+    const editClient = (client) => {
+        console.log("Hello")
+        setClient_ID(client._id)
+        setClient_profilePicture(client.client_profilePicture);
+        setClient_FirstName(client.client_FirstName);
+        setClient_LastName(client.client_LastName);
+        setClient_UserName(client.client_UserName);
+        setClient_Email(client.client_Email);
+        setClient_Mobile(client.client_Mobile);
+        setClient_NIC(client.client_NIC);
+        setClient_Address(client.client_Address);
+        setClient_Gender(client.client_Gender);
+        setClient_DOB(client.client_DOB);
+        setClient_Status(client.client_Status);
+
+        document.getElementById("btnImgDelete").removeAttribute("disabled");
+        document.getElementById("btnEditImg").removeAttribute("disabled");
+        document.getElementById("btnAddImg").setAttribute("disabled", "true");
+    }
+
     const displayAllClients = () => {
         return clients.map((client) => {
             return (<tr itemScope="row" id={client._id} key={client._id}>
                 <td>
-                    {client.client_ID}
+                    {client._id}
                 </td>
                 <td>{client.client_FirstName}</td>
                 <td>
@@ -56,8 +78,12 @@ const Client = () => {
                 <td> {client.client_Status}</td>
 
                 <td>
-                    <i className="fa-solid fa-pen me-3 text-primary d-inline"/>
-                    <i className="fa-solid fa-trash-can d-inline me-2 text-danger d-inline"/>
+                    <i className="fa-solid fa-pen me-3 text-primary d-inline" onClick={() => {
+                        editClient(client)
+                    }}/>
+                    <i className="fa-solid fa-trash-can d-inline me-2 text-danger d-inline" onClick={() => {
+                        deleteClient(client)
+                    }}/>
                 </td>
             </tr>)
         });
@@ -82,20 +108,87 @@ const Client = () => {
                 imgUploaderElement = document.getElementById("imgUploader");
                 console.log(imgUploaderElement);
                 if (imgUploaderElement.files[0] !== null && imgUploaderElement.files[0] !== undefined) {
-                    console.log("Hello")
-                    let fileReader = new FileReader();
-                    fileReader.onload = function (event) {
+                    if (imgUploaderElement.files.length > 0) {
+                        const fileReader = new FileReader();
 
-                        console.log(event)
-                        setClient_profilePicture(event.target.result);
+                        fileReader.onload = function (event) {
+                            setClient_profilePicture(event.target.result);
+                        };
+
+                        fileReader.readAsDataURL(imgUploaderElement.files[0]);
                     }
                 }
-                // setClient_profilePicture(imgUploaderElement.file[0]);
             });
         }
+
+        document.getElementById("btnEditImg").removeAttribute("disabled");
+        document.getElementById("btnImgDelete").removeAttribute("disabled");
+    }
+
+    const updateImageToProfile = () => {
+        document.getElementById("ProfileImage").removeAttribute("src");
+        document.getElementById("btnAddImg").setAttribute("disabled", "true");
+
+        let imgDiv = document.getElementById("imgInputDiv");
+
+        let imgUploader = document.createElement("input");
+        imgUploader.setAttribute("id", "imgUploader");
+        imgUploader.setAttribute("type", "file");
+        imgUploader.setAttribute("required", "true");
+        imgUploader.setAttribute("accept", "image/png, image/gif, image/jpeg");
+        imgUploader.setAttribute("class", "d-none")
+        imgDiv.appendChild(imgUploader);
+
+        let imgUploaderElement = document.getElementById("imgUploader");
+        console.log(imgUploaderElement);
+
+        if (imgUploaderElement !== undefined && imgUploaderElement !== null) {
+            imgUploaderElement.click();
+            imgUploaderElement.addEventListener("change", () => {
+                imgUploaderElement = document.getElementById("imgUploader");
+                console.log(imgUploaderElement);
+                if (imgUploaderElement.files[0] !== null && imgUploaderElement.files[0] !== undefined) {
+                    if (imgUploaderElement.files.length > 0) {
+                        const fileReader = new FileReader();
+
+                        fileReader.onload = function (event) {
+                            setClient_profilePicture(event.target.result);
+                        };
+
+                        fileReader.readAsDataURL(imgUploaderElement.files[0]);
+                    }
+                }
+            });
+        }
+
     }
 
     const addClient = () => {
+        const newClient = {
+            "client_ID": "client_ID",
+            "client_FirstName": client_FirstName,
+            "client_LastName": client_LastName,
+            "client_profilePicture": client_profilePicture,
+            "client_UserName": client_UserName,
+            "client_Email": client_Email,
+            "client_Mobile": client_Mobile,
+            "client_NIC": client_NIC,
+            "client_Password": client_Password,
+            "client_Gender": client_Gender,
+            "client_DOB": client_DOB,
+            "client_Status": client_Status,
+            "client_Address": client_Address,
+        }
+
+        axios.post("http://localhost:8000/api/client/", newClient).then((response) => {
+            if (response.data.result.response) {
+                alert("Client Added");
+                getAll();
+            }
+        })
+    }
+
+    const updateClient = () => {
         const newClient = {
             "client_ID": client_ID,
             "client_FirstName": client_FirstName,
@@ -112,7 +205,27 @@ const Client = () => {
             "client_Address": client_Address,
         }
 
-        console.log(newClient);
+        axios.put("http://localhost:8000/api/client/", newClient).then((response) => {
+            if (response.data.result.response) {
+                alert("Client Updated");
+                getAll();
+            }
+        })
+    }
+
+    const removeProfileImages = () => {
+        document.getElementById("ProfileImage").removeAttribute("src");
+        document.getElementById("btnImgDelete").setAttribute("disabled", "true");
+    }
+
+    const deleteClient = (client) => {
+        console.log(client)
+        axios.delete(`http://localhost:8000/api/client/${client._id}`).then((response) => {
+            if (response.data.result.response) {
+                alert("Client Deleted");
+                getAll();
+            }
+        })
     }
 
     return (
@@ -155,39 +268,47 @@ const Client = () => {
                                 <div className="col d-flex justify-content-end align-items-center">
                                     <div className="col d-flex justify-content-end">
                                         <div>
-                                            <button className="btn btnAddImg" type="button" onClick={() => {
-                                                addImageToProfile()
-                                            }}>
+                                            <button className="btn btnAddImg" id="btnAddImg" type="button"
+                                                    onClick={() => {
+                                                        addImageToProfile()
+                                                    }}>
                                                 <i className="fa fa-plus text-white" aria-hidden="true"/>
                                             </button>
-                                            <button className="btn btnEditImg" type="button">
+                                            <button className="btn btnEditImg" id="btnEditImg" type="button"
+                                                    onClick={() => {
+                                                        updateImageToProfile()
+                                                    }}>
                                                 <i className="fa-solid fa-pen text-white"/>
                                             </button>
-                                            <button className="btn btnImgDelete" type="button">
+                                            <button className="btn btnImgDelete" id="btnImgDelete" type="button"
+                                                    onClick={() => {
+                                                        removeProfileImages()
+                                                    }}>
                                                 <i className="fa-solid fa-trash-can d-inline text-white"/>
                                             </button>
                                         </div>
                                     </div>
                                     <div id="imgInputDiv">
                                         <div>
-                                            <img className="imgDiv" src={client_profilePicture} alt=""/>
+                                            <img id="ProfileImage" className="imgDiv" src={client_profilePicture}
+                                                 alt=""/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div className="row mt-4">
                                 <div className="col">
                                     <input type="text" className="form-control" placeholder="First Name"
                                            onChange={(e) => {
                                                setClient_FirstName(e.target.value)
-                                           }}/>
+                                           }} value={client_FirstName}/>
+
                                 </div>
                                 <div className="col">
                                     <input type="text" className="form-control" placeholder="Last Name"
                                            onChange={(e) => {
                                                setClient_LastName(e.target.value)
-                                           }}/>
+                                           }} value={client_LastName}/>
                                 </div>
                             </div>
                             <div className="row mt-4">
@@ -196,6 +317,7 @@ const Client = () => {
                                            onChange={(e) => {
                                                setClient_UserName(e.target.value)
                                            }}
+                                           value={client_UserName}
                                     />
                                 </div>
                                 <div className="col">
@@ -203,6 +325,7 @@ const Client = () => {
                                            onChange={(e) => {
                                                setClient_Email(e.target.value)
                                            }}
+                                           value={client_Email}
                                     />
                                 </div>
                             </div>
@@ -212,6 +335,7 @@ const Client = () => {
                                            onChange={(e) => {
                                                setClient_Mobile(e.target.value)
                                            }}
+                                           value={client_Mobile}
                                     />
                                 </div>
                                 <div className="col">
@@ -219,12 +343,24 @@ const Client = () => {
                                            onChange={(e) => {
                                                setClient_NIC(e.target.value)
                                            }}
+                                           value={client_NIC}
+                                    />
+                                </div>
+                            </div>
+                            <div className="row mt-4">
+                                <div className="col-12">
+                                    <textarea className="form-control" placeholder="Address"
+                                              value={client_Address}
+                                              onChange={(e) => {
+                                                  setClient_Address(e.target.value)
+                                              }}
                                     />
                                 </div>
                             </div>
                             <div className="row mt-4">
                                 <div className="col">
-                                    <select name="gender" className="form-select" aria-label="role" onChange={(e) => {
+                                    <select name="gender" value={client_Gender} className="form-select"
+                                            aria-label="role" onChange={(e) => {
                                         setClient_Gender(e.target.value)
                                     }}>
                                         <option selected disabled value="0">Gender</option>
@@ -237,6 +373,7 @@ const Client = () => {
                                            className="form-control"
                                            placeholder="Date of Birth"
                                            type="text"
+                                           value={client_DOB}
                                            onFocus={(e) => e.target.type = 'date'} id="dateOfBirth" onChange={(e) => {
                                         setClient_DOB(e.target.value)
                                     }}/>
@@ -244,7 +381,7 @@ const Client = () => {
                                 <div className="col">
                                     <select name="status" className="form-select" aria-label="role" onChange={(e) => {
                                         setClient_Status(e.target.value)
-                                    }}>
+                                    }} value={client_Status}>
                                         <option selected disabled value="0">Status</option>
                                         <option value="1">Online</option>
                                         <option value="2">Offline</option>
@@ -257,7 +394,10 @@ const Client = () => {
                                         addClient()
                                     }}>Register
                                     </button>
-                                    <button type="button" className="btn btnUpdate">Update</button>
+                                    <button type="button" className="btn btnUpdate" onClick={() => {
+                                        updateClient()
+                                    }}>Update
+                                    </button>
                                     <button type="button" className="btn btnDelete">Delete</button>
                                 </div>
                             </div>
