@@ -25,7 +25,7 @@ const Sidebar = () => {
                 <span className="icon"><i className="fa fa-archive" aria-hidden="true"/></span>
                 <span className="title">Package</span>
             </Link></li>
-            <li><Link to="/package">
+            <li><Link to="/ride">
                 <span className="icon"><i className="fa fa-location-arrow" aria-hidden="true"/></span>
                 <span className="title">Ride</span>
             </Link></li>
