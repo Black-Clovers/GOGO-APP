@@ -100,177 +100,217 @@ const SignUp = () => {
         }
     }
 
-    return (<div className="container" id="container">
-        <div className="form-container sign-up-container" style={{"overflow-y": "scroll"}}>
-            <form action="#" className="signUpForm form" style={{"height": "auto"}}>
-                <h1 style={{"margin-top": "15px"}}>Create Account</h1>
-                <span>or use your email for registration</span>
+    const checkLogin = () => {
+        console.log("Hello")
+        const chekLogin = {
+            "client_ID": "client_ID",
+            "client_FirstName": client_FirstName,
+            "client_LastName": client_LastName,
+            "client_profilePicture": client_profilePicture,
+            "client_UserName": client_UserName,
+            "client_Email": client_Email,
+            "client_Mobile": client_Mobile,
+            "client_NIC": client_NIC,
+            "client_Password": client_Password,
+            "client_Gender": client_Gender,
+            "client_DOB": client_DOB,
+            "client_Status": client_Status,
+            "client_Address": client_Address,
+        }
 
-                <div className="row">
-                    <div className="col-12">
-                        <input type="text" className="form-control" placeholder="First Name"
-                               onChange={(e) => {
-                                   setClient_FirstName(e.target.value)
-                               }} value={client_FirstName}/>
-                        <small id="client_FirstName"
-                               className="d-block text-start text-danger form-text invalid-feedback">{errors.client_FirstName}</small>
+        axios.post("http://localhost:8000/api/client/login/", chekLogin).then((response) => {
+            if (response.data.data === null) {
+                VueSweetalert2.fire({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    icon: 'error',
+                    title: 'Please Enter Your Email and Password Correctly',
+                });
+            } else {
+                setClient_Email("");
+                setClient_Password("");
+                document.location.href = "http://localhost:3000/"
+            }
+        })
+    }
 
-                    </div>
-                    <div className="col-12">
-                        <input type="text" className="form-control" placeholder="Last Name"
-                               onChange={(e) => {
-                                   setClient_LastName(e.target.value)
-                               }} value={client_LastName}/>
-                        <small id="client_LastName"
-                               className="d-block text-start text-danger form-text invalid-feedback">{errors.client_LastName}</small>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12">
-                        <input type="text" className="form-control" placeholder="User Name"
-                               onChange={(e) => {
-                                   setClient_UserName(e.target.value)
-                               }}
-                               value={client_UserName}
-                        />
-                        <small id="client_UserName"
-                               className="d-block text-start text-danger form-text invalid-feedback">{errors.client_UserName}</small>
-                    </div>
-                    <div className="col-12">
-                        <input type="email" className="form-control" placeholder="Email"
-                               onChange={(e) => {
-                                   setClient_Email(e.target.value)
-                               }}
-                               value={client_Email}
-                        />
-                        <small id="client_Email"
-                               className="d-block text-start text-danger form-text invalid-feedback">{errors.client_Email}</small>
-                    </div>
-                </div>
+    return (
+        <div className="container" id="container">
+            <div className="form-container sign-up-container" style={{"overflow-y": "scroll"}}>
+                <form className="signUpForm form" style={{"height": "auto"}}>
+                    <h1 className="h1" style={{"margin-top": "50px"}}>Create Account</h1>
+                    <span className="span mb-3 mt-4">or use your email for registration</span>
 
-                <div className="row w-100">
-                    <div className="col-12 p-0">
+                    <div className="row">
+                        <div className="col-12">
+                            <input type="text" className="form-control" placeholder="First Name"
+                                   onChange={(e) => {
+                                       setClient_FirstName(e.target.value)
+                                   }} value={client_FirstName}/>
+                            <small id="client_FirstName"
+                                   className="d-block text-start text-danger form-text invalid-feedback">{errors.client_FirstName}</small>
+
+                        </div>
+                        <div className="col-12">
+                            <input type="text" className="form-control" placeholder="Last Name"
+                                   onChange={(e) => {
+                                       setClient_LastName(e.target.value)
+                                   }} value={client_LastName}/>
+                            <small id="client_LastName"
+                                   className="d-block text-start text-danger form-text invalid-feedback">{errors.client_LastName}</small>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-12">
+                            <input type="text" className="form-control" placeholder="User Name"
+                                   onChange={(e) => {
+                                       setClient_UserName(e.target.value)
+                                   }}
+                                   value={client_UserName}
+                            />
+                            <small id="client_UserName"
+                                   className="d-block text-start text-danger form-text invalid-feedback">{errors.client_UserName}</small>
+                        </div>
+                        <div className="col-12">
+                            <input type="email" className="form-control" placeholder="Email"
+                                   onChange={(e) => {
+                                       setClient_Email(e.target.value)
+                                   }}
+                                   value={client_Email}
+                            />
+                            <small id="client_Email"
+                                   className="d-block text-start text-danger form-text invalid-feedback">{errors.client_Email}</small>
+                        </div>
+                    </div>
+                    <div className="row w-100">
+                        <div className="col-12 p-0">
                         <textarea className="form-control" placeholder="Address"
                                   onChange={(e) => {
                                       setClient_Address(e.target.value)
                                   }}
                                   value={client_Address}
                         />
-                        <small id="client_Address"
-                               className="d-block text-start text-danger form-text invalid-feedback">{errors.client_Address}</small>
+                            <small id="client_Address"
+                                   className="d-block text-start text-danger form-text invalid-feedback">{errors.client_Address}</small>
+                        </div>
                     </div>
-                </div>
-
-
-                <div className="row">
-                    <div className="col-12">
-                        <input type="tel" className="form-control" placeholder="Mobile Number"
-                               onChange={(e) => {
-                                   setClient_Mobile(e.target.value)
-                               }}
-                               value={client_Mobile}
-                        />
-                        <small id="client_Mobile"
-                               className="d-block text-start text-danger form-text invalid-feedback">{errors.client_Mobile}</small>
+                    <div className="row">
+                        <div className="col-12">
+                            <input type="tel" className="form-control" placeholder="Mobile Number"
+                                   onChange={(e) => {
+                                       setClient_Mobile(e.target.value)
+                                   }}
+                                   value={client_Mobile}
+                            />
+                            <small id="client_Mobile"
+                                   className="d-block text-start text-danger form-text invalid-feedback">{errors.client_Mobile}</small>
+                        </div>
+                        <div className="col-12">
+                            <input type="text" className="form-control" placeholder="NIC"
+                                   onChange={(e) => {
+                                       setClient_NIC(e.target.value)
+                                   }}
+                                   value={client_NIC}
+                            />
+                            <small id="client_NIC"
+                                   className="d-block text-start text-danger form-text invalid-feedback">{errors.client_NIC}</small>
+                        </div>
                     </div>
-                    <div className="col-12">
-                        <input type="text" className="form-control" placeholder="NIC"
-                               onChange={(e) => {
-                                   setClient_NIC(e.target.value)
-                               }}
-                               value={client_NIC}
-                        />
-                        <small id="client_NIC"
-                               className="d-block text-start text-danger form-text invalid-feedback">{errors.client_NIC}</small>
+                    <div className="row ">
+                        <div className="col-12">
+                            <select name="gender" value={client_Gender} className="form-select"
+                                    aria-label="role" onChange={(e) => {
+                                setClient_Gender(e.target.value)
+                            }}>
+                                <option selected disabled value="0">Gender</option>
+                                <option defaultValue="1">Male</option>
+                                <option defaultValue="2">Female</option>
+                            </select>
+                            <small id="client_Gender"
+                                   className="d-block text-start text-danger form-text invalid-feedback">{errors.client_Gender}</small>
+                        </div>
+                        <div className="col-12">
+                            <input name="dateOfBirth"
+                                   className="form-control"
+                                   placeholder="Date of Birth"
+                                   type="text"
+                                   value={client_DOB}
+                                   onFocus={(e) => e.target.type = 'date'} id="dateOfBirth" onChange={(e) => {
+                                setClient_DOB(e.target.value)
+                            }}/>
+                            <small id="client_DOB"
+                                   className="d-block text-start text-danger form-text invalid-feedback">{errors.client_DOB}</small>
+                        </div>
                     </div>
-                </div>
-
-                <div className="row ">
-                    <div className="col-12">
-                        <select name="gender" value={client_Gender} className="form-select"
-                                aria-label="role" onChange={(e) => {
-                            setClient_Gender(e.target.value)
-                        }}>
-                            <option selected disabled value="0">Gender</option>
-                            <option defaultValue="1">Male</option>
-                            <option defaultValue="2">Female</option>
-                        </select>
-                        <small id="client_Gender"
-                               className="d-block text-start text-danger form-text invalid-feedback">{errors.client_Gender}</small>
+                    <div className="row">
+                        <div className="col-12">
+                            <input type="password" className="form-control" placeholder="Password"
+                                   onChange={(e) => {
+                                       setClient_Password(e.target.value)
+                                   }}
+                                   value={client_Password}
+                            />
+                            <small id="client_Password"
+                                   className="d-block text-danger text-start form-text invalid-feedback">{errors.client_Password}</small>
+                        </div>
+                        <div className="col-12">
+                            <input type="password" className="form-control" placeholder="Confirm Password"
+                                   onChange={(e) => {
+                                       setClient_Conf_Password(e.target.value)
+                                   }}
+                                   value={client_Conf_Password}
+                            />
+                            {/*<small id="client_Conf_password"*/}
+                            {/*       className="d-block text-danger form-text invalid-feedback">{errors.client_Password}</small>*/}
+                        </div>
                     </div>
-                    <div className="col-12">
-                        <input name="dateOfBirth"
-                               className="form-control"
-                               placeholder="Date of Birth"
-                               type="text"
-                               value={client_DOB}
-                               onFocus={(e) => e.target.type = 'date'} id="dateOfBirth" onChange={(e) => {
-                            setClient_DOB(e.target.value)
-                        }}/>
-                        <small id="client_DOB"
-                               className="d-block text-start text-danger form-text invalid-feedback">{errors.client_DOB}</small>
+                    <button type="button" className="btn button mt-5 mb-5"
+                            onClick={() => {
+                                addClient()
+                            }}>Register
+                    </button>
+                </form>
+            </div>
+
+
+            <div className="form-container sign-in-container">
+                <form className="loginForm form">
+                    <h1 className="h1">Sign in</h1>
+                    <span className="span">or use your account</span>
+                    <input type="email" className="form-control mt-2" placeholder="Email" name="email" id="sEmail"
+                           onChange={(e) => {
+                               setClient_Email(e.target.value)
+                           }}/>
+                    <input type="password" className="form-control mt-2" placeholder="Password" name="password"
+                           id="sPassword" onChange={(e) => {
+                        setClient_Password(e.target.value)
+                    }}/>
+                    <a className="a" style={{"cursor": "pointer"}}>Forgot your password?</a>
+                    <button type="button" id="signInCheck" className="button" onClick={() => {
+                        checkLogin();
+                    }}>Sign In
+                    </button>
+                </form>
+            </div>
+
+            <div className="overlay-container">
+                <div className="overlay">
+                    <div className="overlay-panel overlay-left">
+                        <h1 className="h1">Welcome Back!</h1>
+                        <p className="p">To keep connected with us please login with your personal info</p>
+                        <button className="ghost button" id="signIn">Sign In</button>
                     </div>
-                </div>
 
-                <div className="row">
-                    <div className="col-12">
-                        <input type="password" className="form-control" placeholder="Password"
-                               onChange={(e) => {
-                                   setClient_Password(e.target.value)
-                               }}
-                               value={client_Password}
-                        />
-                        <small id="client_Password"
-                               className="d-block text-danger text-start form-text invalid-feedback">{errors.client_Password}</small>
+                    <div className="overlay-panel overlay-right">
+                        <h1 className="h1">Hello!</h1>
+                        <p className="p">Enter your personal details and start journey with us</p>
+                        <button className="ghost btn button" id="signUp">Sign Up</button>
                     </div>
-                    <div className="col-12">
-                        <input type="password" className="form-control" placeholder="Confirm Password"
-                               onChange={(e) => {
-                                   setClient_Conf_Password(e.target.value)
-                               }}
-                               value={client_Conf_Password}
-                        />
-                        {/*<small id="client_Conf_password"*/}
-                        {/*       className="d-block text-danger form-text invalid-feedback">{errors.client_Password}</small>*/}
-                    </div>
-                </div>
-                <button type="button" className="btn btnRegister mt-3 mb-3"
-                        onClick={() => {
-                            addClient()
-                        }}>Register
-                </button>
-            </form>
-        </div>
-
-
-        <div className="form-container sign-in-container">
-            <form action="#" className="loginForm form">
-                <h1>Sign in</h1>
-                <span>or use your account</span>
-                <input type="email" className="form-control mt-2" placeholder="Email" name="email" id="sEmail"/>
-                <input type="password" className="form-control mt-2" placeholder="Password" name="password"
-                       id="sPassword"/>
-                <a style={{"cursor": "pointer"}}>Forgot your password?</a>
-                <button id="signInCheck">Sign In</button>
-            </form>
-        </div>
-
-        <div className="overlay-container">
-            <div className="overlay">
-                <div className="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
-                    <button className="ghost" id="signIn">Sign In</button>
-                </div>
-
-                <div className="overlay-panel overlay-right">
-                    <h1>Hello!</h1>
-                    <p>Enter your personal details and start journey with us</p>
-                    <button className="ghost" id="signUp">Sign Up</button>
                 </div>
             </div>
-        </div>
-    </div>)
+        </div>)
 }
 
 export default SignUp;

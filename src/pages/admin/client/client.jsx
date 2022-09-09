@@ -16,10 +16,10 @@ const Client = () => {
     const [client_Email, setClient_Email] = useState("");
     const [client_Mobile, setClient_Mobile] = useState("");
     const [client_NIC, setClient_NIC] = useState("");
-    const [client_Password, setClient_Password] = useState("12345");
-    const [client_Gender, setClient_Gender] = useState("");
+    const [client_Password, setClient_Password] = useState("hello12@");
+    const [client_Gender, setClient_Gender] = useState("0");
     const [client_DOB, setClient_DOB] = useState("");
-    const [client_Status, setClient_Status] = useState("");
+    const [client_Status, setClient_Status] = useState("0");
     const [client_Address, setClient_Address] = useState("");
 
     useEffect(() => {
@@ -196,6 +196,7 @@ const Client = () => {
                 icon: 'error',
                 title: 'Please enter your details',
             });
+            console.log(errors)
         } else {
             axios.post("http://localhost:8000/api/client/", newClient).then((response) => {
                 if (response.data.result.response) {

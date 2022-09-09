@@ -11,32 +11,16 @@
     background: conic-gradient(from 208.67deg at 9.44% -12.5%, #3EFFC4 0deg, #C1FFEC 123.75deg, #2B4B43 234.38deg, #3EFFC4 360deg);
 }
 
-.btnRegister {
-    background: conic-gradient(from 208.67deg at 9.44% -12.5%, #3EFFC4 0deg, #C1FFEC 123.75deg, #2B4B43 234.38deg, #3EFFC4 360deg);
-    border: 3px solid rgba(0, 0, 0, 0.24);
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
-    box-sizing: border-box;
-    width: 128px;
-    height: 49px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    line-height: 21px;
-    text-align: center;
-    color: #FFFFFF;
-}
-
-h1 {
+.h1 {
     font-weight: bold;
     margin: 0;
 }
 
-h2 {
+.h2 {
     text-align: center;
 }
 
-p {
+.p {
     font-size: 14px;
     font-weight: 100;
     line-height: 20px;
@@ -44,18 +28,18 @@ p {
     margin: 20px 0 30px;
 }
 
-span {
+.span {
     font-size: 12px;
 }
 
-a {
+.a {
     color: #333;
     font-size: 14px;
     text-decoration: none;
     margin: 15px 0;
 }
 
-button {
+.button {
     border-radius: 20px;
     border-color: #FFFFFF;
     background: conic-gradient(from 208.67deg at 9.44% -12.5%, #3EFFC4 0deg, #C1FFEC 123.75deg, #2B4B43 234.38deg, #3EFFC4 360deg);
@@ -98,7 +82,7 @@ button.ghost {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     position: relative;
     overflow: hidden;
-    top: 115px;
+    top: 70px;
     width: 50%;
     max-width: 100%;
     min-height: 480px;
