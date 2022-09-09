@@ -28,13 +28,11 @@ const Client = () => {
 
     const getAll = () => {
         axios.get("http://localhost:8000/api/client/all/").then((response) => {
-            console.log(response.data.data);
             setClients(response.data.data);
         })
     };
 
     const editClient = (client) => {
-        console.log("Hello")
         setClient_ID(client._id)
         setClient_profilePicture(client.client_profilePicture);
         setClient_FirstName(client.client_FirstName);
@@ -183,7 +181,6 @@ const Client = () => {
         axios.post("http://localhost:8000/api/client/", newClient).then((response) => {
             if (response.data.result.response) {
                 alert("Client Added");
-                getAll();
             }
         })
     }
@@ -207,7 +204,7 @@ const Client = () => {
 
         axios.put("http://localhost:8000/api/client/", newClient).then((response) => {
             if (response.data.result.response) {
-                alert("Client Updated");
+                alert("Ride Updated");
                 getAll();
             }
         })
