@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import '../client/client.css';
-import axios from 'axios'
+import axios from 'axios';
+import ClientValidation from '../../../validation/ClientValidation';
+import VueSweetalert2 from "sweetalert2";
 
 
 const Client = () => {
     const [clients, setClients] = useState([]);
+    const [errors, setErrors] = useState({});
     const [client_ID, setClient_ID] = useState("");
     const [client_FirstName, setClient_FirstName] = useState("");
     const [client_LastName, setClient_LastName] = useState("");
@@ -178,11 +181,47 @@ const Client = () => {
             "client_Address": client_Address,
         }
 
-        axios.post("http://localhost:8000/api/client/", newClient).then((response) => {
-            if (response.data.result.response) {
-                alert("Client Added");
-            }
-        })
+        const {isInvalid, errors} = ClientValidation(
+            newClient
+        );
+
+        if (isInvalid) {
+            setErrors(errors);
+            console.log(errors);
+            VueSweetalert2.fire({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                icon: 'error',
+                title: 'Please enter your details',
+            });
+        } else {
+            axios.post("http://localhost:8000/api/client/", newClient).then((response) => {
+                if (response.data.result.response) {
+                    VueSweetalert2.fire({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        icon: 'success',
+                        title: 'Your client details added to the System',
+                    });
+                    setClient_ID("")
+                    setClient_profilePicture("");
+                    setClient_FirstName("");
+                    setClient_LastName("");
+                    setClient_UserName("");
+                    setClient_Email("");
+                    setClient_Mobile("");
+                    setClient_NIC("");
+                    setClient_Address("");
+                    setClient_Gender("");
+                    setClient_DOB("");
+                    setClient_Status("");
+                }
+            })
+        }
     }
 
     const updateClient = () => {
@@ -256,7 +295,7 @@ const Client = () => {
                         </div>
                     </div>
                     <div className="row mt-5 px-3">
-                        <form>
+                        <form id="clientForm">
                             <div className="row">
                                 <div className="col d-flex justify-content-end align-items-center">
                                     <div className="col d-flex justify-content-end">
@@ -295,6 +334,8 @@ const Client = () => {
                                            onChange={(e) => {
                                                setClient_FirstName(e.target.value)
                                            }} value={client_FirstName}/>
+                                    <small id="client_FirstName"
+                                           className="d-block text-danger form-text invalid-feedback">{errors.client_FirstName}</small>
 
                                 </div>
                                 <div className="col">
@@ -302,6 +343,8 @@ const Client = () => {
                                            onChange={(e) => {
                                                setClient_LastName(e.target.value)
                                            }} value={client_LastName}/>
+                                    <small id="client_LastName"
+                                           className="d-block text-danger form-text invalid-feedback">{errors.client_LastName}</small>
                                 </div>
                             </div>
                             <div className="row mt-4">
@@ -312,6 +355,8 @@ const Client = () => {
                                            }}
                                            value={client_UserName}
                                     />
+                                    <small id="client_UserName"
+                                           className="d-block text-danger form-text invalid-feedback">{errors.client_UserName}</small>
                                 </div>
                                 <div className="col">
                                     <input type="email" className="form-control" placeholder="Email"
@@ -320,6 +365,8 @@ const Client = () => {
                                            }}
                                            value={client_Email}
                                     />
+                                    <small id="client_Email"
+                                           className="d-block text-danger form-text invalid-feedback">{errors.client_Email}</small>
                                 </div>
                             </div>
                             <div className="row mt-4">
@@ -330,6 +377,8 @@ const Client = () => {
                                            }}
                                            value={client_Mobile}
                                     />
+                                    <small id="client_Mobile"
+                                           className="d-block text-danger form-text invalid-feedback">{errors.client_Mobile}</small>
                                 </div>
                                 <div className="col">
                                     <input type="text" className="form-control" placeholder="NIC"
@@ -338,6 +387,8 @@ const Client = () => {
                                            }}
                                            value={client_NIC}
                                     />
+                                    <small id="client_NIC"
+                                           className="d-block text-danger form-text invalid-feedback">{errors.client_NIC}</small>
                                 </div>
                             </div>
                             <div className="row mt-4">
@@ -348,6 +399,8 @@ const Client = () => {
                                                   setClient_Address(e.target.value)
                                               }}
                                     />
+                                    <small id="client_Address"
+                                           className="d-block text-danger form-text invalid-feedback">{errors.client_Address}</small>
                                 </div>
                             </div>
                             <div className="row mt-4">
@@ -360,6 +413,8 @@ const Client = () => {
                                         <option defaultValue="1">Male</option>
                                         <option defaultValue="2">Female</option>
                                     </select>
+                                    <small id="client_Gender"
+                                           className="d-block text-danger form-text invalid-feedback">{errors.client_Gender}</small>
                                 </div>
                                 <div className="col">
                                     <input name="dateOfBirth"
@@ -370,6 +425,8 @@ const Client = () => {
                                            onFocus={(e) => e.target.type = 'date'} id="dateOfBirth" onChange={(e) => {
                                         setClient_DOB(e.target.value)
                                     }}/>
+                                    <small id="client_DOB"
+                                           className="d-block text-danger form-text invalid-feedback">{errors.client_DOB}</small>
                                 </div>
                                 <div className="col">
                                     <select name="status" className="form-select" aria-label="role" onChange={(e) => {
@@ -379,6 +436,8 @@ const Client = () => {
                                         <option value="1">Online</option>
                                         <option value="2">Offline</option>
                                     </select>
+                                    <small id="client_Status"
+                                           className="d-block text-danger form-text invalid-feedback">{errors.client_Status}</small>
                                 </div>
                             </div>
                             <div className="row mt-5">
