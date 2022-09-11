@@ -9,18 +9,20 @@ const Client = () => {
     const [clients, setClients] = useState([]);
     const [errors, setErrors] = useState({});
     const [client_ID, setClient_ID] = useState("");
-    const [client_FirstName, setClient_FirstName] = useState("");
-    const [client_LastName, setClient_LastName] = useState("");
-    const [client_profilePicture, setClient_profilePicture] = useState("");
-    const [client_UserName, setClient_UserName] = useState("");
-    const [client_Email, setClient_Email] = useState("");
-    const [client_Mobile, setClient_Mobile] = useState("");
-    const [client_NIC, setClient_NIC] = useState("");
+    const [client_FirstName, setClient_FirstName] = useState("Madhusha");
+    const [client_LastName, setClient_LastName] = useState("Prasad");
+    const [client_profilePicture, setClient_profilePicture] = useState("https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png");
+    const [client_UserName, setClient_UserName] = useState("Madhush99");
+    const [client_Email, setClient_Email] = useState("madushaprasad21@gmail.com");
+    const [client_Mobile, setClient_Mobile] = useState("+94716035826");
+    const [client_NIC, setClient_NIC] = useState("991040293V");
     const [client_Password, setClient_Password] = useState("hello12@");
-    const [client_Gender, setClient_Gender] = useState("0");
-    const [client_DOB, setClient_DOB] = useState("");
-    const [client_Status, setClient_Status] = useState("0");
-    const [client_Address, setClient_Address] = useState("");
+    const [client_Conf_Password, setClient_Conf_Password] = useState("hello12@");
+    const [client_Gender, setClient_Gender] = useState("1");
+    const [client_DOB, setClient_DOB] = useState("2022-09-09");
+    const [client_Status, setClient_Status] = useState("1");
+    const [client_Address, setClient_Address] = useState("Kalutara");
+
 
     useEffect(() => {
         getAll();
@@ -79,10 +81,12 @@ const Client = () => {
                 <td> {client.client_Status}</td>
 
                 <td>
-                    <i className="fa-solid fa-pen me-3 text-primary d-inline" onClick={() => {
-                        editClient(client)
-                    }}/>
-                    <i className="fa-solid fa-trash-can d-inline me-2 text-danger d-inline" onClick={() => {
+                    <i style={{"cursor": "pointer"}} className="fa-solid fa-pen me-3 text-primary d-inline"
+                       onClick={() => {
+                           editClient(client)
+                       }}/>
+                    <i style={{"cursor": "pointer"}}
+                       className="fa-solid fa-trash-can d-inline me-2 text-danger d-inline" onClick={() => {
                         deleteClient(client)
                     }}/>
                 </td>
@@ -244,8 +248,28 @@ const Client = () => {
 
         axios.put("http://localhost:8000/api/client/", newClient).then((response) => {
             if (response.data.result.response) {
-                alert("Ride Updated");
+                VueSweetalert2.fire({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    icon: 'success',
+                    title: 'Your client details updated',
+                });
                 getAll();
+
+                setClient_ID("")
+                setClient_profilePicture("");
+                setClient_FirstName("");
+                setClient_LastName("");
+                setClient_UserName("");
+                setClient_Email("");
+                setClient_Mobile("");
+                setClient_NIC("");
+                setClient_Address("");
+                setClient_Gender("");
+                setClient_DOB("");
+                setClient_Status("");
             }
         })
     }
@@ -256,13 +280,36 @@ const Client = () => {
     }
 
     const deleteClient = (client) => {
-        console.log(client)
-        axios.delete(`http://localhost:8000/api/client/${client._id}`).then((response) => {
-            if (response.data.result.response) {
-                alert("Client Deleted");
-                getAll();
+        VueSweetalert2.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to delete this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:8000/api/client/${client._id}`).then((response) => {
+                    if (response.data.result.response) {
+                        VueSweetalert2.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                        getAll();
+                    } else {
+                        VueSweetalert2.fire(
+                            'Not Deleted!',
+                            'Something want wrong',
+                            'error'
+                        )
+                    }
+                })
+
             }
         })
+
     }
 
     const searchClient = () => {
