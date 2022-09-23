@@ -3,7 +3,7 @@
     height: 60px;
     display: flex;
     position: fixed;
-    top: 10px;
+    bottom: 10px;
     left: 10px;
     z-index: 1000;
 }
