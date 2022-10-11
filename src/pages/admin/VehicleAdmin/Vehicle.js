@@ -2,21 +2,20 @@ import React from 'react';
 import Axios from "axios";
 import { useState, useEffect } from "react";
 import '../VehicleAdmin/Vehicle.css';
-import { Link,useParams } from "react-router-dom";
-
+import VueSweetalert2 from "sweetalert2";
 
 
 
 const Vehicle = () => {
 
-    const {id} = useParams();
     const [vehicle_no, setvehicle_no] = useState("");
     const [lisence_no, setlisence_no] = useState("");
     const [chasse_no, setchasse_no] = useState("");
     const [owner_nic, setowner_nic] = useState("");
     const [mobile_no, setmobile_no] = useState("");
     const [owner_name, setowner_name] = useState("");
-    const [ vehicle_type,setvehicle_type] = useState("");
+    const [vehicle_Condition,setvehicle_Condition] = useState("");
+    const [status,setvehicle_status] = useState("");
     const [reg_date, setreg_date] = useState([]);
     const [listOfVehicles, setlistOfVehicles] = useState([]);
     const [vehicle_search, setvvehicle_search] = useState("");
@@ -32,23 +31,37 @@ const createVehicle = () => {
 	owner_nic,
 	mobile_no,  
 	owner_name,
-	vehicle_type,
+	vehicle_Condition,
+    status,
 	reg_date,
     }).then((response) => {
         setlistOfVehicles([
         ...listOfVehicles,
-        {   vehicle_no,
+        {   
+            vehicle_no,
+            vehicle_img,
             lisence_no,
             chasse_no,
             owner_nic,
             mobile_no,  
             owner_name,
-            vehicle_type,
+            vehicle_Condition,
+            status,
             reg_date,
         },
       ]);
     });
-    
+    VueSweetalert2.fire({
+        toast: true,
+        position: 'center',
+        showConfirmButton: false,
+        timer: 2000,
+        icon: 'success',
+        title: 'Vehicle Registered Successfully',
+    }).then(function () {
+        //Redirect the user
+        /*window.location.href = "/admin/vehicle";*/
+    });
   };
   
 
@@ -60,44 +73,125 @@ const createVehicle = () => {
 
     });
 
-  }, [])
+    VueSweetalert2.fire({
+        toast: true,
+        position: 'center',
+        showConfirmButton: false,
+        timer: 1800,
+        icon: 'success',
+        title: 'Your Vehicle details Updated Successfully',
+    }).then(function () {
+        // Redirect the user
+       /* window.location.href = "/admin/vehicle";*/
+      });
+    
 
-  //validation
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormErrors(validate());
-    sub();
-    setIsSubmit(true);
-  };
-  
-  const validate=()=>{
-    const errors = {};
-    if(!vehicle_no){
-         errors.vehicle_no = "Vehicle Number is required!"; 
-    }
+    const loadVehicleDetailsedit = (registervehicle) => {
+        document.getElementById("reg").setAttribute("disabled", "true");
+        document.getElementById("delete").setAttribute("disabled", "true");
+
+        setvehicle_no(registervehicle.vehicle_no);
+        setvehicle_img(registervehicle.vehicle_img);
+        setlisence_no(registervehicle.lisence_no);
+        setchasse_no(registervehicle.chasse_no);
+        setowner_nic(registervehicle.owner_nic);
+        setmobile_no(registervehicle.mobile_no);
+        setowner_name(registervehicle.owner_name);
+        setvehicle_Condition(registervehicle.vehicle_Condition);
+        setvehicle_status(registervehicle.status);
+        setreg_date(registervehicle.reg_date);
+    };
+
+    const loadVehicleDetailsdelete = (registervehicle) => {
+        document.getElementById("reg").setAttribute("disabled", "true");
+        document.getElementById("delete").setAttribute("disabled", "true");
+        
+        setvehicle_no(registervehicle.vehicle_no);
+        setvehicle_img(registervehicle.vehicle_img);
+        setlisence_no(registervehicle.lisence_no);
+        setchasse_no(registervehicle.chasse_no);
+        setowner_nic(registervehicle.owner_nic);
+        setmobile_no(registervehicle.mobile_no);
+        setowner_name(registervehicle.owner_name);
+        setvehicle_Condition(registervehicle.vehicle_Condition);
+        setvehicle_status(registervehicle.status);
+        setreg_date(registervehicle.reg_date);
+    };
+    
+    //Image upload
+	  const addImageToVehicle = () => {
+        let imgDiv = document.getElementById("imgInputDiv");
+
+        let imgUploader = document.createElement("input");
+        imgUploader.setAttribute("id", "imgUploader");
+        imgUploader.setAttribute("type", "file");
+        imgUploader.setAttribute("accept", "image/png, image/gif, image/jpeg");
+        imgUploader.setAttribute("class", "d-none")
+        imgDiv.appendChild(imgUploader);
+
+        let imgUploaderElement = document.getElementById("imgUploader");
+        console.log(imgUploaderElement);
+
+        if (imgUploaderElement !== undefined && imgUploaderElement !== null) {
+            imgUploaderElement.click();
+            imgUploaderElement.addEventListener("change", () => {
+                imgUploaderElement = document.getElementById("imgUploader");
+                console.log(imgUploaderElement);
+                if (imgUploaderElement.files[0] !== null && imgUploaderElement.files[0] !== undefined) {
+                    if (imgUploaderElement.files.length > 0) {
+                        const fileReader = new FileReader();
+
+                        fileReader.onload = function (event) {
+                            setvehicle_img(event.target.result);
+                        };
+
+                        fileReader.readAsDataURL(imgUploaderElement.files[0]);
+                    }
     if(!lisence_no){
         errors.lisence_no = "License Number is required!"; 
-    }
+                }
     if(!chasse_no){
         errors.chasse_no = "Chasse is required!";
     }
     if(!owner_nic){
         errors.owner_nic = "Owner NIC/Passport is required!";
     }
-    if(!mobile_no){
-        errors.mobile_no = "Mobile Number is required!";
-    }
-    if(!owner_name){
-        errors.owner_name = "Owner Name is required!";
-    }
-    if(!vehicle_type){
-        errors.vehicle_type = "Vehicle Type is required!";
-    }
-    if(!reg_date){
-        errors.reg_date = "Registered Date is required!";
-    }
-        return errors;
-    }
+
+    const updateImageToVehicle = () => {
+        document.getElementById("ProfileImage").removeAttribute("src");
+        document.getElementById("btnAddImg").setAttribute("disabled", "true");
+
+        let imgDiv = document.getElementById("imgInputDiv");
+
+        let imgUploader = document.createElement("input");
+        imgUploader.setAttribute("id", "imgUploader");
+        imgUploader.setAttribute("type", "file");
+        imgUploader.setAttribute("required", "true");
+        imgUploader.setAttribute("accept", "image/png, image/gif, image/jpeg");
+        imgUploader.setAttribute("class", "d-none")
+        imgDiv.appendChild(imgUploader);
+
+        let imgUploaderElement = document.getElementById("imgUploader");
+        console.log(imgUploaderElement);
+
+        if (imgUploaderElement !== undefined && imgUploaderElement !== null) {
+            imgUploaderElement.click();
+            imgUploaderElement.addEventListener("change", () => {
+                imgUploaderElement = document.getElementById("imgUploader");
+                console.log(imgUploaderElement);
+                if (imgUploaderElement.files[0] !== null && imgUploaderElement.files[0] !== undefined) {
+                    if (imgUploaderElement.files.length > 0) {
+                        const fileReader = new FileReader();
+
+                        fileReader.onload = function (event) {
+                            setvehicle_img(event.target.result);
+                        };
+
+                        fileReader.readAsDataURL(imgUploaderElement.files[0]);
+                    }
+                }
+            });
+        }
     const sub =() => {
     
         if (Object.keys(formErrors).length == 0 && isSubmit) {
@@ -202,14 +296,14 @@ const createVehicle = () => {
                             <div className="row mt-5">
                                 <div className="d-flex justify-content-around align-items-center">
                                     <button type="submit" onClick={handleSubmit} className="btn btnRegister ">Register</button>
-                                    <button type="button" className="btn btnUpdate">Update</button>
-                                    <button type="button" className="btn btnDelete">Delete</button>
+                                    <button type="button" className="btn btnUpdate" onClick={sendVehicle}>Update</button>
+                                    <button type="button" className="btn btnDelete" onClick={deleteVehicle} >Delete</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div className="row mt-5 px-3">
-                        <h6 className="mb-0 fw-bold mt-2 mb-2">Vehicle</h6>
+                        <h6 className="mb-0 fw-bold mt-2 mb-2">Current Vehicles</h6>
                         <p>All Registered Vehicles</p>
                         <div className="row mt-5">
                                 <div className="col">
