@@ -165,7 +165,7 @@ const createVehicle = () => {
         title: 'Your Vehicle details Updated Successfully',
     }).then(function () {
         // Redirect the user
-       window.location.href = "/vehicle";
+       window.location.href = "/admin/vehicle";
       });
     
     };
@@ -301,7 +301,7 @@ const createVehicle = () => {
             icon: 'success',
         }).then(function () {
           // Redirect the user
-          window.location.href = "/vehicle";
+          window.location.href = "/admin/vehicle";
         });
       };
 
