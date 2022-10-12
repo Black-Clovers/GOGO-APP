@@ -1,12 +1,9 @@
-import './App.css';
 import AppRoutes from "./routes/AppRoutes";
-import AdminLayout from "./layout/adminLayout";
+import './App.css'
 
 function App() {
     return (
-        <AdminLayout class="wrapper">
-            <AppRoutes/>
-        </AdminLayout>
+        <AppRoutes/>
     );
 }
 

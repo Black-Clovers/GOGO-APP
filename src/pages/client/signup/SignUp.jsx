@@ -10,19 +10,19 @@ const SignUp = () => {
 
     const [errors, setErrors] = useState({});
     const [client_ID, setClient_ID] = useState("");
-    const [client_FirstName, setClient_FirstName] = useState("");
-    const [client_LastName, setClient_LastName] = useState("");
+    const [client_FirstName, setClient_FirstName] = useState("Madhusha");
+    const [client_LastName, setClient_LastName] = useState("Prasad");
     const [client_profilePicture, setClient_profilePicture] = useState("https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png");
-    const [client_UserName, setClient_UserName] = useState("");
-    const [client_Email, setClient_Email] = useState("");
-    const [client_Mobile, setClient_Mobile] = useState("");
-    const [client_NIC, setClient_NIC] = useState("");
-    const [client_Password, setClient_Password] = useState("12345");
-    const [client_Conf_Password, setClient_Conf_Password] = useState("");
-    const [client_Gender, setClient_Gender] = useState("");
-    const [client_DOB, setClient_DOB] = useState("");
-    const [client_Status, setClient_Status] = useState("Online");
-    const [client_Address, setClient_Address] = useState("");
+    const [client_UserName, setClient_UserName] = useState("Madhush99");
+    const [client_Email, setClient_Email] = useState("madushaprasad21@gmail.com");
+    const [client_Mobile, setClient_Mobile] = useState("+94716035826");
+    const [client_NIC, setClient_NIC] = useState("991040293V");
+    const [client_Password, setClient_Password] = useState("hello12@");
+    const [client_Conf_Password, setClient_Conf_Password] = useState("hello12@");
+    const [client_Gender, setClient_Gender] = useState("1");
+    const [client_DOB, setClient_DOB] = useState("2022-09-09");
+    const [client_Status, setClient_Status] = useState("1");
+    const [client_Address, setClient_Address] = useState("Kalutara");
 
     useEffect(() => {
         let signUp = document.getElementById("signUp");
@@ -131,7 +131,7 @@ const SignUp = () => {
             } else {
                 setClient_Email("");
                 setClient_Password("");
-                document.location.href = "http://localhost:3000/"
+                document.location.href = "http://localhost:3000/admin"
             }
         })
     }
