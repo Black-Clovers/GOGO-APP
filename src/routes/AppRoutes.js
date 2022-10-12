@@ -13,6 +13,10 @@ import Footer from "../components/client/common/footer/Footer";
 import Sidebar from "../components/admin/common/sidebar/Sidebar";
 import ClientHeader from "../components/client/common/header/ClientHeader";
 
+import Gallery from '../pages/client/Vehicle/VehicleGallery';
+import HireVehicle from "../pages/client/HireVehicle/HireVehicle";
+
+
 
 const AppRoutes = () => {
     return (
@@ -25,7 +29,8 @@ const AppRoutes = () => {
                             <ClientHeader/>
                             <Footer/>
                             <Switch>
-
+                                <Route path="/client/Vehicle" render={(props) => <Gallery/>} exact/>;
+                                <Route path="/client/VehicleHire" render={(props) => <HireVehicle/>} exact/>;
                             </Switch>
                         </ClientLayout>
                     </Route>

@@ -1,0 +1,9 @@
+.header{
+    text-shadow: none;
+    text-align: center;
+    font-weight: bold;
+    color: #2B4B43;
+    border-radius: 15px;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}

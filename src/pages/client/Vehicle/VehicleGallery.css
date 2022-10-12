@@ -1,0 +1,27 @@
+.vacancyheaderbar{
+    position: absolute;
+    width: 956px;
+    height: 53px;
+    left: 20px;
+    top: 135px;
+    
+    background: #FFFFFF;
+    border-radius: 16px;
+    border-color: aqua;
+    border-style: double;
+
+}
+
+.card{
+
+    padding: 2%;
+    width: 25%;
+    height: 50%;
+}
+
+
+.image{
+    position: relative;
+    width: 160px;
+    height: 120px;
+}

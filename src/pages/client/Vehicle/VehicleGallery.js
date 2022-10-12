@@ -20,8 +20,8 @@ const VehicleGallery = () => {
     const searchCard = () => {
         if (VehicleSearch !== "") {
             listOfVehicles.map((data) => {
-                if (data.vehicle_type.toLowerCase().includes(VehicleSearch.toLowerCase())) {
-                    console.log((data.vehicle_type).toLowerCase() === VehicleSearch.toLowerCase());
+                if (data.vehicle_no.toLowerCase().includes(VehicleSearch.toLowerCase())) {
+                    console.log((data.vehicle_no).toLowerCase() === VehicleSearch.toLowerCase());
                     const searchedVehicle = [];
                     searchedVehicle.push(data);
                     setListOfVehicles(searchedVehicle);
@@ -37,7 +37,7 @@ const VehicleGallery = () => {
                 <div className="d-flex justify-content-end align-items-center">
                     <div className="d-flex justify-content-center align-items-center">
                         <input id="searchID" type="text" className="form-control col-8 me-5" onChange={(e) => { setVehicleSearch(e.target.value); }}
-                            placeholder="Vehicle Condition" />
+                            placeholder="Vehicle Number" />
                     </div>
                     <div>
                         <input type="button" className="form-control btnSearch text-white"
@@ -47,6 +47,7 @@ const VehicleGallery = () => {
                     </div>
                 </div>
             </div>
+            <br></br>
 
             <div className="main_container">
                 <div className="item row fw-bold flex-wrap justify-content-between">
@@ -65,20 +66,28 @@ const VehicleGallery = () => {
 
                     {
                         listOfVehicles.map((VehicleRegModel) => {
-                            return (<div id='card' class="card col-5 mb-3" key={VehicleRegModel.vehicle_no}>
-                                <div class="vacancy card-body">
-                                    <h5 class="Vcard-title">{VehicleRegModel.vehicle_no}</h5>
+                            return (
+                            <div class="card  col-5 mb-3 rounded ml-2" key={VehicleRegModel.vehicle_no}>
+                                <div class="Vehicle card-body" className='cardview'>
+                                    < img src={VehicleRegModel.vehicle_img} id = "image" class="image" alt=""/>
+                                    <br></br>
+                                    <br></br>
+                                    <h5 class="Vehicle_no"> {VehicleRegModel.vehicle_no}</h5>
                                     <label for="inputState" class="posform-label">Vehicle Owner :</label>
-                                    <h8 className="No_of_Positions">{CareerModel.owner_name}</h8>
+                                    <h8 className="owner_name"> {VehicleRegModel.owner_name}</h8><br></br>
                                     <label for="inputState" class="posform-label">Condition :</label>
-                                    <h8 className="location">{CareerModel.vehicle_type}</h8>
+                                    <h8 className="vehicle_condition"> {VehicleRegModel.vehicle_Condition}</h8>
                                     <div className='details'>
                                         <label for="inputState" class="detailsform-label">status :</label>
-                                        <p class="detailcard-text">{CareerModel.status}</p>
+                                        <h8 class="status"> {VehicleRegModel.status}</h8>
                                     </div>
-                                    <label for="inputState" class="dateform-label">Reg Date :</label>
-                                    <h1 className="dateh1">{CareerModel.reg_date}</h1>
-                                    <a href="#" id='applybut' class="btn btn-primary float-end">Hire Vehicle</a>
+                                    <div>
+                                        <label for="inputState" class="dateform-label">Reg Date :</label>
+                                        <h8 className="dateh1">{VehicleRegModel.reg_date}</h8>
+                                        <a href="/client/VehicleHire"  className="Hirebutton" class="btn btn-success float-end ">
+                                            Hire Vehicle
+                                        </a>
+                                    </div>
                                 </div>
                             </div>)
                         })
