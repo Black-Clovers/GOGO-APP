@@ -126,7 +126,6 @@ function TravelPackage() {
     
     Axios.put(`http://localhost:8000/api/package/${package_ids}`,newPackage).then(()=>{})
       .catch((err) => {
-        alert(err);
         console.log(err);
       });
       VueSweetalert2.fire({
