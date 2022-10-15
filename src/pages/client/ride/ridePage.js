@@ -3,8 +3,7 @@ import '../ride/ride.css';
 import axios from 'axios';
 import MapContainer from "../../../components/admin/common/map/MapContainer";
 
-
-const Ride = () => {
+function RidePage(props) {
 
     const render = (status: Status) => {
         return <h1>{status}</h1>;
@@ -167,24 +166,10 @@ const Ride = () => {
     };
 
     return (
-        <div>
+        <div className="RideDiv px-4">
             <div className="main_container">
-                <div className="item fw-bold">
-                    Rides Management
-                </div>
                 <div className="item">
-                    <div className="row mt-5 ps-3">
-                        <div className="row">
-                            <div className=" col-lg-6 col-md-12 col-sm-12">
-                                <div className="row">
-                                    <div className="d-flex justify-content-start align-items-center">
-                                        <button id="btn-generate-report" className="btn me-3">Generate Report</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row mt-5 px-3">
+                    <div className="row mt-5 px-3 me-0">
                         <form>
                             <div className="row mt-4">
                                 <div className="col">
@@ -256,68 +241,16 @@ const Ride = () => {
                                     </select>
                                 </div>
                             </div>
-                            <div className="row mt-5">
+                            <div className="row mt-5 pb-4">
                                 <div className="d-flex justify-content-around align-items-center">
                                     <button type="button" className="btn btnRegister" onClick={() => {
                                         addClient()
                                     }}>Register
                                     </button>
-                                    <button type="button" className="btn btnUpdate" onClick={() => {
-                                        updateClient()
-                                    }}>Update
-                                    </button>
-                                    <button type="button" className="btn btnDelete">Delete</button>
+                                    <button type="button" className="btn btnDelete">Cancel</button>
                                 </div>
                             </div>
                         </form>
-                    </div>
-                    <div className="row mt-5 px-3">
-                        <div className="col-6">
-                            <h6 className="mb-0 fw-bold mt-2">Client</h6>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                        <div className="col-6">
-                            <div className="d-flex justify-content-end align-items-center">
-                                <div className="d-flex justify-content-center align-items-center">
-                                    <input id="searchID" type="text" className="form-control col-8 me-5"
-                                           placeholder="ID" onChange={(e) => {
-                                        setClient_ID(e.target.value)
-                                    }}/>
-                                </div>
-                                <div>
-                                    <input type="button" className="form-control btnSearch text-white"
-                                           defaultValue="Search" onClick={() => {
-                                        searchClient()
-                                    }}/>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="table-responsive">
-                            <table className="table table-striped custom-table" id="assignLabsTable">
-                                <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
-                                    <th scope="col">Profile Picture</th>
-                                    <th scope="col">User Name</th>
-                                    <th scope="col">Address</th>
-                                    <th scope="col">Mobile</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Gender</th>
-                                    <th scope="col">NIC</th>
-                                    <th scope="col">DOB</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col"/>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {displayAllClients()}
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -325,4 +258,4 @@ const Ride = () => {
     );
 }
 
-export default Ride;
+export default RidePage;
