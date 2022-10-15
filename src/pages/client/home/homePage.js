@@ -6,7 +6,7 @@ import './home.css'
 function HomePage(props) {
     return (
         <div className="homeDiv">
-            <div>
+            <div className="RidemapDiv">
                 <RideMap/>
             </div>
             <div className="pb-4 driverRegSection">
