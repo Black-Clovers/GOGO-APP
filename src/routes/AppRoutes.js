@@ -8,8 +8,8 @@ import SignUp from "../pages/client/signup/SignUp";
 import ClientLayout from "../layout/clientLayout";
 import AdminLayout from "../layout/adminLayout";
 import Header from "../components/admin/common/header/Header";
-import Footer from "../components/client/common/footer/Footer";
 import Sidebar from "../components/admin/common/sidebar/Sidebar";
+import HomePage from "../pages/client/home/homePage";
 import ClientHeader from "../components/client/common/header/ClientHeader";
 
 
@@ -19,15 +19,18 @@ const AppRoutes = () => {
             <Router>
                 <Switch>
                     <Route path="/login" render={(props) => <SignUp/>}/>;
-                    <Route path='/client/:path?' exact>
-                        <ClientLayout>
+                    <div style={{"height": "auto"}}>
+                        <Route path='/client/:path?' exact>
                             <ClientHeader/>
-                            {/*<Footer/>*/}
-                            <Switch>
-
-                            </Switch>
-                        </ClientLayout>
-                    </Route>
+                            <ClientLayout>
+                                <main>
+                                    <Switch>
+                                        <Route path="/client" render={(props) => <HomePage/>} exact/>;
+                                    </Switch>
+                                </main>
+                            </ClientLayout>
+                        </Route>
+                    </div>
 
                     <Route path='/admin/:path?' exact>
                         <AdminLayout class="wrapper">
