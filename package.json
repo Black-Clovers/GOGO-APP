@@ -15,7 +15,9 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
     "sweetalert2": "^11.3.0",
-    "validator": "^13.7.0"
+    "validator": "^13.7.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.23"
   },
   "scripts": {
     "start": "react-scripts start",
