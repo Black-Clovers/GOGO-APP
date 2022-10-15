@@ -6,9 +6,10 @@
     list-style: none;
     text-decoration: none;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins';
 }
 
 body{
     background: #e1ecf2;
+    font-family: 'Poppins';
 }

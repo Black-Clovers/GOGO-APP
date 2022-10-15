@@ -24,7 +24,7 @@ const AppRoutes = () => {
                     <Route path='/client/:path/:id?' exact>
                         <ClientLayout>
                             <ClientHeader/>
-                            <Footer/>
+                            {/*<Footer/>*/}
                             <Switch>
                             <Route path="/client/pkgdecards" render={(props) => <Packagecards/>}/>;
                             <Route path="/client/pkgdetails/:id" render={(props) => <PackageDetails/>}/>;
