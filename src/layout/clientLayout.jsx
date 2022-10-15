@@ -1,8 +1,14 @@
 import React from 'react';
-import Header from '../components/admin/common/header/Header';
 
-const ClientLayout = ({ children }) => {
-  return <>{children}</>;
+const ClientLayout = (props) => {
+    return (
+        <div>
+            <div className={props.class}>
+                {props.children}
+            </div>
+        </div>
+    );
 };
+
 
 export default ClientLayout;

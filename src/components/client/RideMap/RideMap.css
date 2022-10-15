@@ -1,0 +1,38 @@
+.RideMapDiv {
+    padding-left: 58px;
+}
+.RideMapDivRight {
+    padding-right: 58px;
+    text-align: justify;
+    font-weight: bold;
+    text-align: justify;
+}
+
+.RideMapMainDiv{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.btnGroup{
+    margin-top: 43px;
+}
+
+
+.leftBtn{
+    width: 200px;
+    background: conic-gradient(from 208.67deg at 9.44% -12.5%, #3EFFC4 0deg, #C1FFEC 123.75deg, #2B4B43 234.38deg, #3EFFC4 360deg);
+    /* btn-border-line */
+    border: 2px solid rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+    color: #FFFFFF;
+}
+
+.rightBtn{
+    width: 200px;
+    background: conic-gradient(from 208.67deg at 9.44% -12.5%, #3EFFC4 0deg, #C1FFEC 123.75deg, #2B4B43 234.38deg, #3EFFC4 360deg);
+    /* btn-border-line */
+    border: 2px solid rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+    color: #FFFFFF;
+}
