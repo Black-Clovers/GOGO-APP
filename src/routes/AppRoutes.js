@@ -11,6 +11,8 @@ import Header from "../components/admin/common/header/Header";
 import Footer from "../components/client/common/footer/Footer";
 import Sidebar from "../components/admin/common/sidebar/Sidebar";
 import ClientHeader from "../components/client/common/header/ClientHeader";
+import PackageDetails from "../pages/client/travelPackage/PackageDetails";
+import Packagecards from "../pages/client/travelPackage/Packagecards"
 
 
 const AppRoutes = () => {
@@ -19,12 +21,13 @@ const AppRoutes = () => {
             <Router>
                 <Switch>
                     <Route path="/login" render={(props) => <SignUp/>}/>;
-                    <Route path='/client/:path?' exact>
+                    <Route path='/client/:path/:id?' exact>
                         <ClientLayout>
                             <ClientHeader/>
                             <Footer/>
                             <Switch>
-
+                            <Route path="/client/pkgdecards" render={(props) => <Packagecards/>}/>;
+                            <Route path="/client/pkgdetails/:id" render={(props) => <PackageDetails/>}/>;
                             </Switch>
                         </ClientLayout>
                     </Route>
