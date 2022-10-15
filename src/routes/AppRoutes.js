@@ -9,8 +9,8 @@ import ClientLayout from "../layout/clientLayout";
 import AdminLayout from "../layout/adminLayout";
 import Header from "../components/admin/common/header/Header";
 import Sidebar from "../components/admin/common/sidebar/Sidebar";
-import HomePage from "../pages/client/home/homePage";
 import ClientHeader from "../components/client/common/header/ClientHeader";
+import HomePage from "../pages/client/home/homePage";
 
 
 const AppRoutes = () => {
@@ -19,8 +19,8 @@ const AppRoutes = () => {
             <Router>
                 <Switch>
                     <Route path="/login" render={(props) => <SignUp/>}/>;
-                    <div style={{"height": "auto"}}>
-                        <Route path='/client/:path?' exact>
+                    <Route path='/client/:path?' exact>
+                        <div style={{"height": "auto"}}>
                             <ClientHeader/>
                             <ClientLayout>
                                 <main>
@@ -29,8 +29,8 @@ const AppRoutes = () => {
                                     </Switch>
                                 </main>
                             </ClientLayout>
-                        </Route>
-                    </div>
+                        </div>
+                    </Route>
 
                     <Route path='/admin/:path?' exact>
                         <AdminLayout class="wrapper">
