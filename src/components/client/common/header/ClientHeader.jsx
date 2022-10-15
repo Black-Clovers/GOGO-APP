@@ -27,7 +27,8 @@ const ClientHeader = () => {
                              id="navbarSupportedContent">
                             <ul className="navbar-nav mb-2 mb-lg-0 fw-bold">
                                 <li className="nav-item">
-                                    <a className="nav-link active text-white" aria-current="page" href="#">Home</a>
+                                    <Link className="nav-link me-2 text-white" tabIndex="-1"
+                                          aria-disabled="true" to="/client">Home</Link>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link text-white" href="#">Driver</a>
