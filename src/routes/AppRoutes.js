@@ -11,6 +11,8 @@ import Header from "../components/admin/common/header/Header";
 import Sidebar from "../components/admin/common/sidebar/Sidebar";
 import HomePage from "../pages/client/home/homePage";
 import ClientHeader from "../components/client/common/header/ClientHeader";
+import PackageDetails from "../pages/client/travelPackage/PackageDetails";
+import Packagecards from "../pages/client/travelPackage/Packagecards"
 
 
 const AppRoutes = () => {
@@ -31,7 +33,6 @@ const AppRoutes = () => {
                             </ClientLayout>
                         </Route>
                     </div>
-
                     <Route path='/admin/:path?' exact>
                         <AdminLayout class="wrapper">
                             <Header/>
