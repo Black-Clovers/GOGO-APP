@@ -1,6 +1,47 @@
+.headerDiv{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+}
+
+.characterImage{
+    width: 70%;
+}
+
+.mainTitleDiv{
+    padding-left: 35px;
+}
+
+.contentRowDiv{
+    position: relative;
+    top: 15px;
+}
+
+.webHeroContent{
+    width:75%;
+    font-weight: bold;
+    line-height: 15px;
+    text-align: justify;
+}
+
+.mainTitle{
+    margin-bottom: 25px;
+}
+
+
 .logo {
     width: 290px;
     height: 80px;
+}
+
+.backGroundImage {
+    position: absolute;
+    right: 0;
+    width: 75%;
+    height: 100vh;
+    background-size: cover;
 }
 
 .profileCircle {
@@ -49,5 +90,5 @@
     .collapseDiv {
         margin-top: 50px;
     }
-    
+
 }
