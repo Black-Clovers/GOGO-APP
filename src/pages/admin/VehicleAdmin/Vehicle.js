@@ -8,7 +8,7 @@ import VueSweetalert2 from "sweetalert2";
 
 function Vehicle(){
 
-     const [owner_id, setowner_id] = useState("");
+    const [owner_id, setowner_id] = useState("");
     const [vehicle_no, setvehicle_no] = useState("");
     const [vehicle_img,setvehicle_img] = useState("");
     const [lisence_no, setlisence_no] = useState("");

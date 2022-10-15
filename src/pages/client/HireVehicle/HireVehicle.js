@@ -8,7 +8,6 @@ import VueSweetalert2 from "sweetalert2";
 
 function HireVehicle(){
 
-     const [Hire_id, setHire_id] = useState("");
     const [client_name, setclient_name] = useState("");
     const [client_address, setclient_address] = useState("");
     const [client_email,setclient_email] = useState("");
@@ -45,6 +44,9 @@ function HireVehicle(){
         }
         if(!contact_no){
             errors.contact_no = "Contact number is required !";
+        }else 
+        if(contact_no.length !==10){
+            errors.contact_no = "Contact number Reqired 10 Digites !";
         }
         if(!from){
             errors.from = "Start Location is required !";
@@ -74,7 +76,6 @@ function HireVehicle(){
 const MakeHire = () => {
     Axios.post("http://localhost:8000/api/vehiclehire/", {
 
-        Hire_id,
 		client_name,
         client_address,
         client_email,
@@ -89,7 +90,6 @@ const MakeHire = () => {
         setlistOfHires([
         ...listOfHires,
         {   
-            Hire_id,
             client_name,
             client_address,
             client_email,
@@ -102,6 +102,7 @@ const MakeHire = () => {
         },
       ]);
     });
+
     VueSweetalert2.fire({
         toast: true,
         position: 'center',
@@ -111,89 +112,105 @@ const MakeHire = () => {
         title: 'Vehicle Hire Requested Successfully',
     }).then(function () {
         //Redirect the user
-        /*window.location.href = "/vehicle";*/
+        window.location.href = "/client/vehicle/";
     });
+    
   };
 
-
-  useEffect(() => {
-
-    Axios.get("http://localhost:8000/api/vehiclehire/all").then((response) => {
-
-        setlistOfHires(response.data);
-    });
-  },[]);
-
   return(
-    <div class="h-auto  w-auto p-0 rounded position-static" className='formview'>
-      <div class="card mb-4" >
-        <div class="card-header py-4" >
-          <h5 class="text-center font-weight-bold h5" className='header'>Reserve a Vehicle</h5>
-        </div>
-        <div class="card-body" >
-            <ul class="list-group list-group-flush">
-                <form>
-                    <div class="form-outline mb-4">
-                        <input type="text" id="form6Example4" class="form-control"  value={client_name} placeholder="Full Name"  onChange={(event) => {setclient_name(event.target.value);}}/>
-                        <p class="alert-txt">{formErrors.client_name}</p>
-                    </div>
-                    <div class="form-outline mb-4">
-                        <input type="text" id="form6Example4" class="form-control"placeholder="address" value={client_address} onChange={(event) => {setclient_address(event.target.value);}}/>
-                        <p class="alert-txt">{formErrors.client_address}</p>
-                    </div>
-                    <div class="form-outline mb-4">
-                        <input type="text" id="form6Example4" class="form-control"placeholder="Email" value={client_email} onChange={(event) => {setclient_email(event.target.value);}}/>
-                        <p class="alert-txt">{formErrors.client_email}</p>
-                    </div>
-                    <div class="form-outline mb-4">
-                    <input type="text" id="form6Example4" class="form-control"placeholder="Phone" value={contact_no} onChange={(event) => {setcontact_no(event.target.value);}}/>
-                    <p class="alert-txt">{formErrors.contact_no}</p>
-                    </div>
-                    <div class="form-outline mb-4">
-                    <input type="text" id="form6Example4" class="form-control"placeholder="From" value={from} onChange={(event) => {setfrom(event.target.value);}}/>
-                    <p class="alert-txt">{formErrors.from}</p>
-                    </div>
-                    <div class="form-outline mb-4">
-                    <input type="text" id="form6Example4" class="form-control"placeholder="To" value={to} onChange={(event) => {setto(event.target.value);}}/>
-                    <p class="alert-txt">{formErrors.to}</p>
-                    </div>
-                    <div class="form-outline mb-4">
-                    <input type="text" id="form6Example4" class="form-control"placeholder="Passener Count" value={passanger_count} onChange={(event) => {setpassanger_count(event.target.value);}}/>
-                    <p class="alert-txt">{formErrors.passanger_count}</p>
-                    </div>
-                    <div className="col">
-                        < select onChange={(event) => {setdriver_status(event.target.value); }} name="Driver Status" className="form-select" value={driver_status} aria-label="role">
-                            <option selected enabled value="0">Driver Choices</option>
-                            <option value="With a Driver">With a Driver</option>
-                            <option value="Without a Driver">Without a Driver</option>
-                        </select>
-                        <p class="alert-txt">{formErrors.driver_status}</p>
-                    </div>
-                    <div class="form-outline mb-4">
-                        <input name="pickUpTime" className="form-control" placeholder="Reserve Date"
-                                type="text"
-                                value={trip_date}
-                                onFocus={(e) => e.target.type = 'date'} id="pickUpTime" onChange={(e) => {
-                                settrip_date(e.target.value)
-                        }}/>
-                        <p class="alert-txt">{formErrors.trip_date}</p>
-                    </div>
-                    
-                    <div class="form-outline mb-4">
-                        <div className="d-flex justify-content-around align-items-center">
-                            <button
-                                type="submit"
-                                id="reg"
-                                onClick={HireVehicle}
-                                className="btn btnRegister ">
-                                Hire Now
-                            </button>     
-                        </div>
-                    </div>
-                </form>
-            </ul>
-        </div>
+    <div class="col-md-3 flex-item" id='cardview' >
+    <center>
+    <div class="card-header py-4" >
+        <h5 class="text-center font-weight-bold h5" className='header'>Reserve a Vehicle</h5>
     </div>
+    </center>
+    <form class="row g-3">
+    <div class="col-md-6">
+        <label for="inputName" class="form-label">Full Name</label>
+        <input type="text" value={client_name} class="form-control" id="inputName"/>
+    </div>
+    <div class="col-md-6">
+        <label for="inputAddress" class="form-label">Address</label>
+        <input type="text" value={client_address} class="form-control" id="inputAddress"/>
+    </div>
+    <div class="col-12">
+        <label for="inputEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail" value={client_email} placeholder="example@gmail.com"/>
+    </div>
+    <div class="col-12">
+        <label for="inputAddress2" class="form-label">Mobile No</label>
+        <input type="number" value={contact_no} class="form-control" id="inputAddress2" placeholder=""/>
+    </div>
+    <div class="col-md-4">
+        <label for="inputState" class="form-label">From</label>
+        <select select onChange={(event) => {setfrom(event.target.value); }} value={from} id="inputState" class="form-select">
+        <option value="Colombo" selected>Colombo</option>
+        <option value="Moratuwa" selected>Moratuwa</option>
+        <option value="Kandy" selected>Kandy</option>
+        <option value="Negombo" selected>Negombo</option>
+        <option value="Batticaloa" selected>Batticaloa</option>
+        <option value="Sri Jayewardenepura Kotte" selected>Sri Jayewardenepura Kotte</option>
+        <option value="Kilinochchi" selected>Kilinochchi</option>
+        <option value="Galle" selected>Galle</option>
+        <option value="Trincomalee" selected>Trincomalee</option>
+        <option value="Matara" selected>Matara</option>
+        <option value="Jaffna" selected>Jaffna</option>
+        <option value="Anuradhapura" selected>Anuradhapura</option>
+        <option value="Ratnapura" selected>Ratnapura</option>
+        <option value="Puttalam" selected>Puttalam</option>
+        <option value="Badulla" selected>Badulla</option>
+        <option value="Mullaittivu" selected>Mullaittivu</option>
+        <option value="Matale" selected>Matale</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label for="inputState" class="form-label">To</label>
+        <select select onChange={(event) => {setto(event.target.value); }} value={to} id="inputState" class="form-select">
+        <option value="Colombo" selected>Colombo</option>
+        <option value="Moratuwa" selected>Moratuwa</option>
+        <option value="Kandy" selected>Kandy</option>
+        <option value="Negombo" selected>Negombo</option>
+        <option value="Batticaloa" selected>Batticaloa</option>
+        <option value="Sri Jayewardenepura Kotte" selected>Sri Jayewardenepura Kotte</option>
+        <option value="Kilinochchi" selected>Kilinochchi</option>
+        <option value="Galle" selected>Galle</option>
+        <option value="Trincomalee" selected>Trincomalee</option>
+        <option value="Matara" selected>Matara</option>
+        <option value="Jaffna" selected>Jaffna</option>
+        <option value="Anuradhapura" selected>Anuradhapura</option>
+        <option value="Ratnapura" selected>Ratnapura</option>
+        <option value="Puttalam" selected>Puttalam</option>
+        <option value="Badulla" selected>Badulla</option>
+        <option value="Mullaittivu" selected>Mullaittivu</option>
+        <option value="Matale" selected>Matale</option>
+        </select>
+    </div>
+    <div></div>
+    <div class="col-md-12">
+        <label for="inputcount" class="form-label">Passenger Count</label>
+        <input class="input-number" type="text"  value={passanger_count} ></input>
+    </div>
+    <div class="col-md-10">
+        <label for="inputState" class="form-label">Driver Status</label>
+        <select select onChange={(event) => {setdriver_status(event.target.value); }} value={driver_status} id="inputState" class="form-select">
+            <option value="With Driver" selected>With Driver</option>
+            <option value="Without Driver" selected>Without Driver</option>
+        </select>
+    </div>
+    <div class="form-outline mb-4">
+        <label for="inputState" class="form-label">Reserve Date</label>
+         <input name="pickUpTime" className="form-control" placeholder="Reserve Date"
+            type="text"
+            value={trip_date}
+            onFocus={(e) => e.target.type = 'date'} id="pickUpTime" onChange={(e) => {
+            settrip_date(e.target.value)
+            }}/>
+            <p class="alert-danger">{formErrors.trip_date}</p>
+        </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary" id="reg" onClick={HireVehicle}>Sign in</button>
+    </div>
+</form>
 </div>
   )
 }

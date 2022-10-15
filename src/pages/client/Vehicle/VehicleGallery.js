@@ -47,55 +47,44 @@ const VehicleGallery = () => {
                     </div>
                 </div>
             </div>
-            <br></br>
-
-            <div className="main_container">
-                <div className="item row fw-bold flex-wrap justify-content-between">
-                    {/* 
-                    {listofVacancies &&
-                        listofVacancies.filter(value => {
-                            if (VacancySearch === "") {
-                                return value;
-                            } else if (
-                                value.Vacancy_Position.toLowerCase().includes(VacancySearch.toLowerCase())
-                            ) {
-                                return value
-                            }
-                        })
-                    } */}
-
+            
                     {
                         listOfVehicles.map((VehicleRegModel) => {
                             return (
-                            <div class="card  col-5 mb-3 rounded ml-2" key={VehicleRegModel.vehicle_no}>
-                                <div class="Vehicle card-body" className='cardview'>
-                                    < img src={VehicleRegModel.vehicle_img} id = "image" class="image" alt=""/>
-                                    <br></br>
-                                    <br></br>
-                                    <h5 class="Vehicle_no"> {VehicleRegModel.vehicle_no}</h5>
-                                    <label for="inputState" class="posform-label">Vehicle Owner :</label>
-                                    <h8 className="owner_name"> {VehicleRegModel.owner_name}</h8><br></br>
-                                    <label for="inputState" class="posform-label">Condition :</label>
-                                    <h8 className="vehicle_condition"> {VehicleRegModel.vehicle_Condition}</h8>
-                                    <div className='details'>
-                                        <label for="inputState" class="detailsform-label">status :</label>
-                                        <h8 class="status"> {VehicleRegModel.status}</h8>
+                        <div class="col-md-3 flex-item" id='cardview'>
+                            <div class="p-3">
+                              <div class="card h-110 flex-item">
+                                <img src={VehicleRegModel.vehicle_img} class="card-img-center"alt="car" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">{VehicleRegModel.vehicle_no}</h5>
+                                        <p class="card-text">
+                                            Owner : {VehicleRegModel.owner_name}
+                                        </p>
+                                        <p class="card-text">
+                                            Condition : {VehicleRegModel.vehicle_Condition}                                        </p>
+                                        <p class="card-text">
+                                            Availability : {VehicleRegModel.status}
+                                        </p>
+                                        <p class="card-text">
+                                            Contact : {VehicleRegModel.mobile_no}
+                                        </p>
                                     </div>
-                                    <div>
-                                        <label for="inputState" class="dateform-label">Reg Date :</label>
-                                        <h8 className="dateh1">{VehicleRegModel.reg_date}</h8>
-                                        <a href="/client/VehicleHire"  className="Hirebutton" class="btn btn-success float-end ">
+                                    <div class="card-footer">
+                                        <small class="text-muted">
+                                       <center><a href="/client/VehicleHire"  id='Hirebutton' class="btn btn-success">
                                             Hire Vehicle
                                         </a>
+                                        </center>
+                                        </small>
                                     </div>
-                                </div>
-                            </div>)
+                              </div>
+                            </div>
+                        </div>
+                            )
                         })
                     }
 
                 </div>
-            </div>
-        </div>
     )
 }
 

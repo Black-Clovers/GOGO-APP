@@ -1,27 +1,38 @@
-.vacancyheaderbar{
-    position: absolute;
-    width: 956px;
-    height: 53px;
-    left: 20px;
-    top: 135px;
-    
-    background: #FFFFFF;
-    border-radius: 16px;
-    border-color: aqua;
-    border-style: double;
-
+.body{
+    padding: 1rem;
+  line-height: 1.4;
 }
 
-.card{
-
-    padding: 2%;
-    width: 25%;
-    height: 50%;
-}
-
-
-.image{
-    position: relative;
-    width: 160px;
+.card-img-top{
+    width: 155px;
     height: 120px;
+}
+
+.card-title{
+    font-weight: 300;
+}
+
+#cardview{
+        padding: 5rem 1rem;
+        --auto-grid-min-size: 16rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+        grid-gap: 1rem;
+        display: inline-grid;
+        flex-basis: 31%;
+        transition: 0.5s;
+
+}
+
+#cardview:hover{
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-center{
+    width : 414px;
+    height: 300px;
+}
+
+#Hirebutton{
+    align-content: center;
 }

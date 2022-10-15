@@ -1,9 +1,15 @@
-.header{
-    text-shadow: none;
-    text-align: center;
-    font-weight: bold;
-    color: #2B4B43;
-    border-radius: 15px;
-    box-sizing: border-box;
-    font-family: 'Roboto';
+#cardview{
+    padding: 5rem 1rem;
+    --auto-grid-min-size: 16rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+    grid-gap: 1rem;
+    display: inline-grid;
+    flex-basis: 31%;
+    transition: 0.5s;
+    background: #fff;
+    padding: 15px;
+    margin-left: 40%;
+    margin-top: 30px;
+
 }
