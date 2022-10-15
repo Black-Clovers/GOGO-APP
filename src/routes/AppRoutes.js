@@ -22,7 +22,7 @@ const AppRoutes = () => {
                     <Route path='/client/:path?' exact>
                         <ClientLayout>
                             <ClientHeader/>
-                            <Footer/>
+                            {/*<Footer/>*/}
                             <Switch>
 
                             </Switch>
