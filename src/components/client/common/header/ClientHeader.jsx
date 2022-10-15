@@ -38,9 +38,8 @@ const ClientHeader = () => {
                                     </a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link text-white">
-                                        Ride
-                                    </a>
+                                    <Link className="nav-link me-2 text-white" tabIndex="-1"
+                                          aria-disabled="true" to="/client/ride">Ride</Link>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link text-white">
