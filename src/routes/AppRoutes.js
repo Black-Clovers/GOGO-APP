@@ -34,6 +34,8 @@ const AppRoutes = () => {
                                         <Route path="/client/ride" render={(props) => <RidePage/>} />;
                                         <Route path="/client/career" render={(props) => <CareerHome/>}/>;
                                       <Route path="/client/registerVacancy" render={(props) => <RegisterVacancy/>}/>;
+                                      <Route path="/client/pkgdecards" render={(props) => <Packagecards/>}/>;
+                                    <Route path="/client/pkgdetails/:id" render={(props) => <PackageDetails/>}/>;
                                     </Switch>
                                 </main>
                             </ClientLayout>
