@@ -68,14 +68,14 @@ function HireVehicle(){
         };
 
     const sub =() => {
-        if (Object.keys().length === 0 && isSubmit) {
+        if (Object.keys(formErrors).length === 0 && isSubmit) {
             MakeHire();
         }
     };
 
-const MakeHire = () => {
+    const MakeHire = () => {
     Axios.post("http://localhost:8000/api/vehiclehire/", {
-
+        
 		client_name,
         client_address,
         client_email,
@@ -109,109 +109,130 @@ const MakeHire = () => {
         showConfirmButton: false,
         timer: 2000,
         icon: 'success',
-        title: 'Vehicle Hire Requested Successfully',
+        title: 'Vehicle Hire Requested Successfully, We will let you know',
     }).then(function () {
         //Redirect the user
         window.location.href = "/client/vehicle/";
-    });
-    
+    });  
   };
 
   return(
-    <div class="col-md-3 flex-item" id='cardview' >
-    <center>
-    <div class="card-header py-4" >
-        <h5 class="text-center font-weight-bold h5" className='header'>Reserve a Vehicle</h5>
+<div class="row">
+<center>
+<div className="travl-img mt-5 mx-auto">
+</div>
+    <div class="col-md-4 mb-4 mt-4 mx-auto ">
+      <div class="card mb-5">
+        <div class="card-header py-3">
+          <h5 class="text-center font-weight-bold h4">Reserve A Hire</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <h4 className='mb-4'> </h4>
+            <form>     
+            <div class="form-outline mb-4">
+              <input type="text" id="form6Example4"  name="client_name" class="form-control"placeholder="Full Name" onChange={(event) => {setclient_name(event.target.value);}}/>
+              <p class="alert-txt">{formErrors.client_name}</p>
+            </div>
+            <div class="form-outline mb-4">
+              <input type="text" id="form6Example4"  name="client_address" class="form-control"placeholder="Residential Address" onChange={(event) => {setclient_address(event.target.value);}}/>
+              <p class="alert-txt">{formErrors.client_address}</p>
+            </div>  
+            <div class="form-outline mb-4">
+              <input type="text" id="form6Example4"  name="contact_no" class="form-control"placeholder="Phone" onChange={(event) => {setcontact_no(event.target.value);}}/>
+              <p class="alert-txt">{formErrors.cus_phone}</p>
+            </div>
+            <div class="form-outline mb-4">
+              <input type="text" id="form6Example4"  name="client_email" class="form-control"placeholder="Email" onChange={(event) => {setclient_email(event.target.value);}}/>
+              <p class="alert-txt">{formErrors.client_email}</p>
+            </div>
+            <div className="row mt-4">
+                <div className="col">
+                    < select onChange={(event) => {setfrom(event.target.value); }} name="from" className="form-select"  aria-label="role">
+                        <option selected enabled value="0">From</option>
+                        <option value="Colombo" selected>Colombo</option>
+                            <option value="Moratuwa" selected>Moratuwa</option>
+                            <option value="Kandy" selected>Kandy</option>
+                            <option value="Negombo" selected>Negombo</option>
+                            <option value="Batticaloa" selected>Batticaloa</option>
+                            <option value="Sri Jayewardenepura Kotte" selected>Sri Jayewardenepura Kotte</option>
+                            <option value="Kilinochchi" selected>Kilinochchi</option>
+                            <option value="Galle" selected>Galle</option>
+                            <option value="Trincomalee" selected>Trincomalee</option>
+                            <option value="Matara" selected>Matara</option>
+                            <option value="Jaffna" selected>Jaffna</option>
+                            <option value="Anuradhapura" selected>Anuradhapura</option>
+                            <option value="Ratnapura" selected>Ratnapura</option>
+                            <option value="Puttalam" selected>Puttalam</option>
+                            <option value="Badulla" selected>Badulla</option>
+                            <option value="Mullaittivu" selected>Mullaittivu</option>
+                            <option value="Matale" selected>Matale</option>
+                        </select>
+                        <p class="alert-txt">{formErrors.from}</p>
+                </div>
+                <div className="col">
+                    < select onChange={(event) => {setto(event.target.value); }} name="to" className="form-select"  aria-label="role">
+                        <option selected enabled value="0">To</option>
+                        <option value="Colombo" selected>Colombo</option>
+                            <option value="Moratuwa" selected>Moratuwa</option>
+                            <option value="Kandy" selected>Kandy</option>
+                            <option value="Kaluthara" selected>Kaluthara</option>
+                            <option value="Badulla" selected>Badulla</option>
+                            <option value="Negombo" selected>Negombo</option>
+                            <option value="Batticaloa" selected>Batticaloa</option>
+                            <option value="Sri Jayewardenepura Kotte" selected>Sri Jayewardenepura Kotte</option>
+                            <option value="Kilinochchi" selected>Kilinochchi</option>
+                            <option value="Galle" selected>Galle</option>
+                            <option value="Trincomalee" selected>Trincomalee</option>
+                            <option value="Matara" selected>Matara</option>
+                            <option value="Jaffna" selected>Jaffna</option>
+                            <option value="Anuradhapura" selected>Anuradhapura</option>
+                            <option value="Ratnapura" selected>Ratnapura</option>
+                            <option value="Puttalam" selected>Puttalam</option>
+                            <option value="Badulla" selected>Badulla</option>
+                            <option value="Mullaittivu" selected>Mullaittivu</option>
+                            <option value="Matale" selected>Matale</option>
+                        </select>
+                        <p class="alert-txt">{formErrors.to}</p>
+                </div>
+            </div>     
+            <div class="form-outline row mt-4">
+                <div className="col">
+                    <input type="number" id="form6Example4"  name="passanger_count" class="form-control" placeholder="Passenger Count" onChange={(event) => {
+                            setpassanger_count(event.target.value);
+                            }}/>
+                </div>
+                <div className="col">
+                    < select onChange={(event) => {setdriver_status(event.target.value); }} name="to" className="form-select"  aria-label="role">
+                        <option selected disabled value="">Driver Status</option>
+                        <option value="With Driver" selected>With Driver</option>
+                            <option value="Without Driver" selected>Without Driver</option>
+                    </select>
+                    <p class="alert-txt">{formErrors.driver_status}</p>
+                </div>
+            </div> 
+            <div className="col">
+                    <input name="trip_date" className="form-control" placeholder="Reserve Date"
+                        type="text"
+                        onFocus={(e) => e.target.type = 'date'} id="pickUpTime" onChange={(e) => {
+                        settrip_date(e.target.value)
+                        }}/>
+            </div> 
+            <br></br>
+            <div class="form-outline mb-4">
+            <div className="col">
+                <div className="d-flex justify-content-around align-items-center">
+                    <button type="submit" id="reg" onClick={HireVehicle} className="btn btnRegister ">Request Hire</button> 
+                </div>
+            </div>
+            </div>        
+            </form>
+          </ul>
+        </div>
+      </div>
     </div>
     </center>
-    <form class="row g-3">
-    <div class="col-md-6">
-        <label for="inputName" class="form-label">Full Name</label>
-        <input type="text" value={client_name} class="form-control" id="inputName"/>
-    </div>
-    <div class="col-md-6">
-        <label for="inputAddress" class="form-label">Address</label>
-        <input type="text" value={client_address} class="form-control" id="inputAddress"/>
-    </div>
-    <div class="col-12">
-        <label for="inputEmail" class="form-label">Email</label>
-        <input type="email" class="form-control" id="inputEmail" value={client_email} placeholder="example@gmail.com"/>
-    </div>
-    <div class="col-12">
-        <label for="inputAddress2" class="form-label">Mobile No</label>
-        <input type="number" value={contact_no} class="form-control" id="inputAddress2" placeholder=""/>
-    </div>
-    <div class="col-md-4">
-        <label for="inputState" class="form-label">From</label>
-        <select select onChange={(event) => {setfrom(event.target.value); }} value={from} id="inputState" class="form-select">
-        <option value="Colombo" selected>Colombo</option>
-        <option value="Moratuwa" selected>Moratuwa</option>
-        <option value="Kandy" selected>Kandy</option>
-        <option value="Negombo" selected>Negombo</option>
-        <option value="Batticaloa" selected>Batticaloa</option>
-        <option value="Sri Jayewardenepura Kotte" selected>Sri Jayewardenepura Kotte</option>
-        <option value="Kilinochchi" selected>Kilinochchi</option>
-        <option value="Galle" selected>Galle</option>
-        <option value="Trincomalee" selected>Trincomalee</option>
-        <option value="Matara" selected>Matara</option>
-        <option value="Jaffna" selected>Jaffna</option>
-        <option value="Anuradhapura" selected>Anuradhapura</option>
-        <option value="Ratnapura" selected>Ratnapura</option>
-        <option value="Puttalam" selected>Puttalam</option>
-        <option value="Badulla" selected>Badulla</option>
-        <option value="Mullaittivu" selected>Mullaittivu</option>
-        <option value="Matale" selected>Matale</option>
-        </select>
-    </div>
-    <div class="col-md-4">
-        <label for="inputState" class="form-label">To</label>
-        <select select onChange={(event) => {setto(event.target.value); }} value={to} id="inputState" class="form-select">
-        <option value="Colombo" selected>Colombo</option>
-        <option value="Moratuwa" selected>Moratuwa</option>
-        <option value="Kandy" selected>Kandy</option>
-        <option value="Negombo" selected>Negombo</option>
-        <option value="Batticaloa" selected>Batticaloa</option>
-        <option value="Sri Jayewardenepura Kotte" selected>Sri Jayewardenepura Kotte</option>
-        <option value="Kilinochchi" selected>Kilinochchi</option>
-        <option value="Galle" selected>Galle</option>
-        <option value="Trincomalee" selected>Trincomalee</option>
-        <option value="Matara" selected>Matara</option>
-        <option value="Jaffna" selected>Jaffna</option>
-        <option value="Anuradhapura" selected>Anuradhapura</option>
-        <option value="Ratnapura" selected>Ratnapura</option>
-        <option value="Puttalam" selected>Puttalam</option>
-        <option value="Badulla" selected>Badulla</option>
-        <option value="Mullaittivu" selected>Mullaittivu</option>
-        <option value="Matale" selected>Matale</option>
-        </select>
-    </div>
-    <div></div>
-    <div class="col-md-12">
-        <label for="inputcount" class="form-label">Passenger Count</label>
-        <input class="input-number" type="text"  value={passanger_count} ></input>
-    </div>
-    <div class="col-md-10">
-        <label for="inputState" class="form-label">Driver Status</label>
-        <select select onChange={(event) => {setdriver_status(event.target.value); }} value={driver_status} id="inputState" class="form-select">
-            <option value="With Driver" selected>With Driver</option>
-            <option value="Without Driver" selected>Without Driver</option>
-        </select>
-    </div>
-    <div class="form-outline mb-4">
-        <label for="inputState" class="form-label">Reserve Date</label>
-         <input name="pickUpTime" className="form-control" placeholder="Reserve Date"
-            type="text"
-            value={trip_date}
-            onFocus={(e) => e.target.type = 'date'} id="pickUpTime" onChange={(e) => {
-            settrip_date(e.target.value)
-            }}/>
-            <p class="alert-danger">{formErrors.trip_date}</p>
-        </div>
-    <div class="col-12">
-        <button type="submit" class="btn btn-primary" id="reg" onClick={HireVehicle}>Sign in</button>
-    </div>
-</form>
-</div>
+  </div>
   )
 }
 

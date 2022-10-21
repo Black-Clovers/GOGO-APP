@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from "axios";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import '../VehicleAdmin/Vehicle.css';
 import VueSweetalert2 from "sweetalert2";
@@ -313,17 +314,15 @@ const createVehicle = () => {
                 </div>
                 <div className="item">
                     <div className="row mt-5 ps-3">
-                        <div className="row">
-                            <div className=" col-lg-6 col-md-12 col-sm-12">
-                                <div className="row">
-                                    <div className="d-flex justify-content-start align-items-center">
-                                        <button id="btn-generate-report" className="btn me-3">Generate Report
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                    <div className="row">
+                  <div className="d-flex justify-content-start align-items-center">
+                    < Link to="/admin/VehicleReport">
+                    <button id="btn-generate-report" className="btn me-3" >
+                      Generate Report
+                    </button>
+                    </Link>
+                  </div>
+                </div>
                     </div>
                     <div className="row mt-5 px-3">
                         <form>
@@ -362,7 +361,7 @@ const createVehicle = () => {
 
                             <div className="row mt-4">
                                 <div className="col">
-                                    <input type="text" className="form-control" value={vehicle_no} placeholder="Vehicle Number" onChange={(event) => {setvehicle_no(event.target.value);}} />
+                                    <input type="text" className="form-control" placeholder="Vehicle Number" onChange={(event) => {setvehicle_no(event.target.value);}} />
                                     <p class="alert-txt">{formErrors.vehicle_no}</p>
                                 </div>
                                 <div className="col">

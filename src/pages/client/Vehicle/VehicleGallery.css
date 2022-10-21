@@ -1,26 +1,19 @@
-.body{
-    padding: 1rem;
-  line-height: 1.4;
-}
 
-.card-img-top{
-    width: 155px;
-    height: 120px;
-}
 
 .card-title{
     font-weight: 300;
 }
 
 #cardview{
+
+        margin-inline:inherit;
         padding: 5rem 1rem;
         --auto-grid-min-size: 16rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+        display: -ms-inline-grid;
         grid-gap: 1rem;
-        display: inline-grid;
         flex-basis: 31%;
         transition: 0.5s;
+        grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
 
 }
 
@@ -36,3 +29,4 @@
 #Hirebutton{
     align-content: center;
 }
+

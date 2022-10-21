@@ -1,0 +1,22 @@
+.driveMainDiv{
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    padding-left: 58px;
+    padding-right: 58px !important;
+    top: 100%;
+    margin-top: 20px;
+}
+
+.driveDiv{
+    padding-left: 58px;
+    padding-right: 58px;
+    background: url("../../../assets/images/driveRegBackground.png");
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.headerTextDiv{
+    color: #FFFFFF;
+    margin-top: 50px;
+}

@@ -3,6 +3,8 @@ import '../client/client.css';
 import axios from 'axios';
 import ClientValidation from '../../../validation/ClientValidation';
 import VueSweetalert2 from "sweetalert2";
+import {jsPDF} from "jspdf";
+import autoTable from "jspdf-autotable";
 
 
 const Client = () => {
@@ -16,12 +18,13 @@ const Client = () => {
     const [client_Email, setClient_Email] = useState("");
     const [client_Mobile, setClient_Mobile] = useState("");
     const [client_NIC, setClient_NIC] = useState("");
-    const [client_Password, setClient_Password] = useState("");
-    const [client_Conf_Password, setClient_Conf_Password] = useState("");
+    const [client_Password, setClient_Password] = useState("hello12@");
+    const [client_Conf_Password, setClient_Conf_Password] = useState("hello12@");
     const [client_Gender, setClient_Gender] = useState("0");
     const [client_DOB, setClient_DOB] = useState("");
     const [client_Status, setClient_Status] = useState("0");
     const [client_Address, setClient_Address] = useState("");
+    const [searchedClient, setSearchedClient] = useState("");
 
 
     useEffect(() => {
@@ -38,7 +41,7 @@ const Client = () => {
     };
 
     const editClient = (client) => {
-        setClient_ID(client._id)
+        setClient_ID(client._id);
         setClient_profilePicture(client.client_profilePicture);
         setClient_FirstName(client.client_FirstName);
         setClient_LastName(client.client_LastName);
@@ -50,6 +53,25 @@ const Client = () => {
         setClient_Gender(client.client_Gender);
         setClient_DOB(client.client_DOB);
         setClient_Status(client.client_Status);
+
+        const searchedClient = {
+            "_id": client_ID,
+            "id": client_ID,
+            "client_FirstName": client_FirstName,
+            "client_LastName": client_LastName,
+            "client_profilePicture": client_profilePicture,
+            "client_UserName": client_UserName,
+            "client_Email": client_Email,
+            "client_Mobile": client_Mobile,
+            "client_NIC": client_NIC,
+            "client_Password": client_Password,
+            "client_Gender": client_Gender,
+            "client_DOB": client_DOB,
+            "client_Status": client_Status,
+            "client_Address": client_Address,
+        }
+
+        setSearchedClient(searchedClient);
 
         document.getElementById("btnImgDelete").removeAttribute("disabled");
         document.getElementById("btnEditImg").removeAttribute("disabled");
@@ -224,6 +246,7 @@ const Client = () => {
                     setClient_Gender("");
                     setClient_DOB("");
                     setClient_Status("");
+                    getAll();
                 }
             })
         }
@@ -270,6 +293,7 @@ const Client = () => {
                 setClient_Gender("");
                 setClient_DOB("");
                 setClient_Status("");
+                getAll();
             }
         })
     }
@@ -304,6 +328,7 @@ const Client = () => {
                             'Something want wrong',
                             'error'
                         )
+                        getAll();
                     }
                 })
 
@@ -324,6 +349,29 @@ const Client = () => {
         }
     };
 
+    const generatePDF = () => {
+        const specialElementHandlers = {
+            '.no-export': function (element, renderer) {
+                return true;
+            }
+        };
+        const doc = new jsPDF('p', 'pt', 'a4');
+
+        doc.text(305, 20, 'Client Details', 'center');
+
+        const head = [['ID', 'First Name', 'Last Name',
+            'User Name', 'Address', 'Mobile', 'Email', 'Gender', 'NIC', 'DOB']];
+        const elements = clients.map(client => [client._id, client.client_FirstName, client.client_LastName,
+            client.client_Address, client.client_Mobile, client.client_Email, client.client_Gender, client.client_NIC]);
+
+        autoTable(doc, {
+            head: head,
+            body: elements,
+        })
+        doc.save("clientDetails.pdf");
+    }
+
+
     return (
         <div>
             <div className="main_container">
@@ -336,7 +384,10 @@ const Client = () => {
                             <div className=" col-lg-6 col-md-12 col-sm-12">
                                 <div className="row">
                                     <div className="d-flex justify-content-start align-items-center">
-                                        <button id="btn-generate-report" className="btn me-3">Generate Report</button>
+                                        <button onClick={() => {
+                                            generatePDF()
+                                        }} id="btn-generate-report" className="btn me-3">Generate Report
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -498,7 +549,10 @@ const Client = () => {
                                         updateClient()
                                     }}>Update
                                     </button>
-                                    <button type="button" className="btn btnDelete">Delete</button>
+                                    <button onClick={() => {
+                                        deleteClient(searchedClient)
+                                    }} type="button" className="btn btnDelete">Delete
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -514,7 +568,7 @@ const Client = () => {
                                     <input id="searchID" type="text" className="form-control col-8 me-5"
                                            placeholder="ID" onChange={(e) => {
                                         setClient_ID(e.target.value)
-                                    }}/>
+                                    }} value={client_ID}/>
                                 </div>
                                 <div>
                                     <input type="button" className="form-control btnSearch text-white"

@@ -51,10 +51,10 @@ const VehicleGallery = () => {
                     {
                         listOfVehicles.map((VehicleRegModel) => {
                             return (
-                        <div class="col-md-3 flex-item" id='cardview'>
+                        <div class="col-md-3" id='cardview'>
                             <div class="p-3">
-                              <div class="card h-110 flex-item">
-                                <img src={VehicleRegModel.vehicle_img} class="card-img-center"alt="car" />
+                              <div class="card h-110">
+                                <img src={VehicleRegModel.vehicle_img} class="card-img-center col-md-3"alt="car" />
                                     <div class="card-body">
                                         <h5 class="card-title">{VehicleRegModel.vehicle_no}</h5>
                                         <p class="card-text">
