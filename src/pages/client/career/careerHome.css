@@ -1,0 +1,204 @@
+.hed{
+    font-size: 40px;
+    font-family: fantasy;
+    padding-left: 45%;
+    padding-top: 10px;
+}
+
+.hed2{
+    font-size: medium;
+    padding-left: 40%;
+}
+
+#card{
+    position:relative;
+    left: 700;
+    padding-left: 100px;
+
+    
+}
+
+.dateh1{
+    font-size: x-small;
+    
+}
+.No_of_Positions{
+    font-size: small;
+    padding-right: 13%;
+}
+.dateform-label{
+    font-weight: bold;
+}
+.Vcard-title{
+    font-weight: bold;
+}
+.Vcard-title:hover {
+   color:rgb(219, 207, 49);
+   
+  }
+.posform-label{
+    font-weight: bold;
+}
+.detailsform-label{
+    font-weight: bold;
+    
+}
+#card{
+
+    background-color:white;
+    padding-left: 50px;
+  
+    
+}
+.location{
+
+    font-weight: lighter;
+}
+.details{
+    margin-bottom: 6%;
+}
+.No_of_Positions{
+    font-weight: lighter;
+}
+.detailcard-text{
+    font-weight: 100;
+    font-style:normal;
+}
+
+#applybut{
+    background: conic-gradient(from 208.67deg at 9.44% -12.5%, #3EFFC4 0deg, #C1FFEC 123.75deg, #2B4B43 234.38deg, #3EFFC4 360deg);
+}
+#searchva{
+
+   margin-top: 70px;
+   margin-left: 50px;
+
+}
+
+#searchID2{
+    width: 250px;
+    margin-left: 800px;
+    margin-top: 10px;
+   margin-top: auto;
+    position:relative; 
+    
+}
+
+#searchbutton{
+    width:100px ;
+    margin-left:1300px ;
+    margin-bottom: 20px;
+
+    
+}
+
+#containcard{
+    width: 100%;
+    margin-top: 400px;
+
+    
+}
+
+.heading{
+
+    padding-left: 10px;
+}
+.paragra{
+    padding-left: 50px;
+    margin-top: 10px;
+    font-size: large;
+}
+
+#con{
+    padding-top: -2000px;
+}
+
+/*The webpage has been designed*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    padding-bottom: -200px;
+}
+
+body{
+    background-color: #ffffff;
+}
+
+/*Basic structure of slider*/
+#slidcard{
+    width: 350px;
+    position:absolute;
+    transform: translate(-50%,-50%);
+    top: 45%;
+    width:max-content;
+   padding-bottom: 200px;
+    left: 50%;
+    height: 40px;
+    overflow: hidden;
+    border: 10px solid #ffffff;
+    border-radius: 8px;
+    box-shadow: -1px 5px 15px black;
+}
+
+/*Area of images*/
+#wrapperslide1{
+    width: 80%;
+    height: max-content;
+    display: flex;
+    animation: slide 16s infinite;
+}
+
+#imagescr{
+    width: 700px;
+    opacity: 1;
+}
+/*Animation activated by keyframes*/
+@keyframes slide{
+    0%{
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateX(0);
+    }
+    30%{
+        transform: translateX(-100%);
+    }
+    50%{
+        transform: translateX(-100%);
+    }
+    55%{
+        transform: translateX(-200%);
+    }
+    75%{
+        transform: translateX(-200%);
+    }
+    80%{
+        transform: translateX(-300%);
+    }
+    100%{
+        transform: translateX(-300%);
+    }
+}
+
+
+
+
+
+
+
+
+
+.swiper-slide {
+    -webkit-flex-shrink: 0;
+    -ms-flex: 0 0 auto;
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+
+element.style {
+    width: 660px;
+}
