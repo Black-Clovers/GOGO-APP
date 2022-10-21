@@ -63,10 +63,6 @@ const Ride = () => {
         })
     }
 
-    const editClient = (trip) => {
-        console.log("Hello",trip)
-    }
-
     const displayAllClients = () => {
         return trips.map((trip) => {
             return (<tr itemScope="row" id={trip._id} key={trip._id}>
@@ -86,11 +82,8 @@ const Ride = () => {
                 <td> {trip.trip_pickUp_Time}</td>
                 <td> {trip.trip_vehicle_Type}</td>
                 <td> {trip.trip_Status}</td>
-
                 <td>
-                    <i className="fa-solid fa-pen me-3 text-primary d-inline" onClick={() => {
-                        editClient(trip)
-                    }}/>
+                    <i className="fa-solid fa-pen me-3 text-primary d-inline"/>
                     <i className="fa-solid fa-trash-can d-inline me-2 text-danger d-inline" onClick={() => {
                         deleteClient(trip)
                     }}/>
@@ -99,30 +92,6 @@ const Ride = () => {
         });
     };
 
-    const updateClient = () => {
-        const newClient = {
-            "client_ID": client_ID,
-            "client_FirstName": client_FirstName,
-            "client_LastName": client_LastName,
-            "client_profilePicture": client_profilePicture,
-            "client_UserName": client_UserName,
-            "client_Email": client_Email,
-            "client_Mobile": client_Mobile,
-            "client_NIC": client_NIC,
-            "client_Password": client_Password,
-            "client_Gender": client_Gender,
-            "client_DOB": client_DOB,
-            "client_Status": client_Status,
-            "client_Address": client_Address,
-        }
-
-        axios.put("http://localhost:8000/api/client/", newClient).then((response) => {
-            if (response.data.result.response) {
-                alert("RidePage Updated");
-                getAll();
-            }
-        })
-    }
 
     const deleteClient = (trip) => {
         console.log(trip)
@@ -232,9 +201,7 @@ const Ride = () => {
                                         addTrip()
                                     }}>Register
                                     </button>
-                                    <button type="button" className="btn btnUpdate" onClick={() => {
-                                        updateClient()
-                                    }}>Update
+                                    <button type="button" className="btn btnUpdate">Update
                                     </button>
                                     <button type="button" className="btn btnDelete">Delete</button>
                                 </div>
@@ -250,9 +217,7 @@ const Ride = () => {
                             <div className="d-flex justify-content-end align-items-center">
                                 <div className="d-flex justify-content-center align-items-center">
                                     <input id="searchID" type="text" className="form-control col-8 me-5"
-                                           placeholder="ID" onChange={(e) => {
-                                        setClient_ID(e.target.value)
-                                    }}/>
+                                           placeholder="ID"/>
                                 </div>
                                 <div>
                                     <input type="button" className="form-control btnSearch text-white"
@@ -269,17 +234,13 @@ const Ride = () => {
                                 <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
-                                    <th scope="col">Profile Picture</th>
-                                    <th scope="col">User Name</th>
-                                    <th scope="col">Address</th>
-                                    <th scope="col">Mobile</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Gender</th>
-                                    <th scope="col">NIC</th>
-                                    <th scope="col">DOB</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Trip Type</th>
+                                    <th scope="col">PickUp Location</th>
+                                    <th scope="col">DropOff Location</th>
+                                    <th scope="col">Vehicle Type</th>
+                                    <th scope="col">PickUp Date</th>
+                                    <th scope="col">PickUp Time</th>
+                                    <th scope="col">Vehicle Type</th>
                                     <th scope="col"/>
                                 </tr>
                                 </thead>
