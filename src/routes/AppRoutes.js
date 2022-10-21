@@ -11,12 +11,7 @@ import Header from "../components/admin/common/header/Header";
 import Sidebar from "../components/admin/common/sidebar/Sidebar";
 import ClientHeader from "../components/client/common/header/ClientHeader";
 import HomePage from "../pages/client/home/homePage";
-import Vehicle from '../pages/admin/VehicleAdmin/Vehicle'
 import RidePage from "../pages/client/ride/ridePage";
-import VehicleRepo from "../pages/admin/VehicleAdmin/VehicleReport";
-import VehicleReq from "../pages/admin/VehicleAdmin/HireRequest";
-import HireVehicle from "../pages/client/HireVehicle/HireVehicle";
-
 
 
 const AppRoutes = () => {
@@ -33,8 +28,6 @@ const AppRoutes = () => {
                                     <Switch>
                                         <Route path="/client" render={(props) => <HomePage/>} exact/>;
                                         <Route path="/client/ride" render={(props) => <RidePage/>} />;
-                                        <Route path="/client/Vehicle" render={(props) => <Gallery/>} exact/>;
-                                        <Route path="/client/VehicleHire" render={(props) => <HireVehicle/>} exact/>;
                                     </Switch>
                                 </main>
                             </ClientLayout>

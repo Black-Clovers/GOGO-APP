@@ -63,6 +63,10 @@ const Ride = () => {
         })
     }
 
+    const editClient = (trip) => {
+        console.log("Hello",trip)
+    }
+
     const displayAllClients = () => {
         return trips.map((trip) => {
             return (<tr itemScope="row" id={trip._id} key={trip._id}>
@@ -82,8 +86,11 @@ const Ride = () => {
                 <td> {trip.trip_pickUp_Time}</td>
                 <td> {trip.trip_vehicle_Type}</td>
                 <td> {trip.trip_Status}</td>
+
                 <td>
-                    <i className="fa-solid fa-pen me-3 text-primary d-inline"/>
+                    <i className="fa-solid fa-pen me-3 text-primary d-inline" onClick={() => {
+                        editClient(trip)
+                    }}/>
                     <i className="fa-solid fa-trash-can d-inline me-2 text-danger d-inline" onClick={() => {
                         deleteClient(trip)
                     }}/>
@@ -92,6 +99,30 @@ const Ride = () => {
         });
     };
 
+    const updateClient = () => {
+        const newClient = {
+            "client_ID": client_ID,
+            "client_FirstName": client_FirstName,
+            "client_LastName": client_LastName,
+            "client_profilePicture": client_profilePicture,
+            "client_UserName": client_UserName,
+            "client_Email": client_Email,
+            "client_Mobile": client_Mobile,
+            "client_NIC": client_NIC,
+            "client_Password": client_Password,
+            "client_Gender": client_Gender,
+            "client_DOB": client_DOB,
+            "client_Status": client_Status,
+            "client_Address": client_Address,
+        }
+
+        axios.put("http://localhost:8000/api/client/", newClient).then((response) => {
+            if (response.data.result.response) {
+                alert("RidePage Updated");
+                getAll();
+            }
+        })
+    }
 
     const deleteClient = (trip) => {
         console.log(trip)

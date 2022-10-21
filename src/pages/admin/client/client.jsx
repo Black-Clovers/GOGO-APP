@@ -362,7 +362,9 @@ const Client = () => {
         const head = [['ID', 'First Name', 'Last Name',
             'User Name', 'Address', 'Mobile', 'Email', 'Gender', 'NIC', 'DOB']];
         const elements = clients.map(client => [client._id, client.client_FirstName, client.client_LastName,
-            client.client_Address, client.client_Mobile, client.client_Email, client.client_Gender, client.client_NIC]);
+            client.client_UserName, client.client_Address,
+            client.client_Mobile, client.client_Email, client.client_Gender, client.client_NIC,
+            client.client_DOB]);
 
         autoTable(doc, {
             head: head,
