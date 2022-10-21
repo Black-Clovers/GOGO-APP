@@ -1,0 +1,64 @@
+
+#listh1{
+    font-size: 30px;
+    color: rgb(10, 10, 10);
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  #listtable{
+    width:100%;
+    table-layout: fixed;
+  }
+  #listheader{
+    background-color: rgba(255,255,255,0.3);
+   }
+  .tbl-content{
+    height:300px;
+    overflow-x:auto;
+    margin-top: 0px;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  th{
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-style: bold;
+    font-size: 16px;
+    color: rgb(12, 12, 12);
+    text-transform: uppercase;
+  }
+  td{
+    padding: 15px;
+    text-align: left;
+    vertical-align:middle;
+    font-weight: 400;
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+    border-bottom: solid 1px rgba(255,255,255,0.1);
+  }
+  
+  
+  /* demo styles */
+  
+  @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+  .loanlistbody{
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    font-family: 'Roboto', sans-serif;
+  }
+  #listsection{
+    margin: 50px;
+  }
+  
+
+
+  #pdfdownloader{
+    background: conic-gradient(from 208.67deg at 9.44% -12.5%, #3EFFC4 0deg, #C1FFEC 123.75deg, #2B4B43 234.38deg, #3EFFC4 360deg);
+  }
+
+  .reporttable__heading{
+    font-weight: bold;
+    font-size: small;
+  }
