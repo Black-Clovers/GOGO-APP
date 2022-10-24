@@ -1,4 +1,4 @@
-![188137464-2f9e375a-29e0-4a9c-b5a9-365e6ce23a97](https://user-images.githubusercontent.com/88552872/188137973-be52df68-7dd0-45be-b78b-38f8fa4f31bb.png)
+ <img src="https://user-images.githubusercontent.com/88552872/188137973-be52df68-7dd0-45be-b78b-38f8fa4f31bb.png" width="100%"/>
 
 <h3 align="left"> GoGo - Taxi service platform</h3>
 
@@ -14,4 +14,11 @@ As 3rd year 1st semaster Software project Management module we have to develop a
  - Samitha Dilshan Senevirathne
  - Heshan Rathsara Kotuwe Gedara
  
+ ## 🌱 Contributors </br>
+
+<a href="https://github.com/Black-Clovers/GOGO-APP/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Black-Clovers/GOGO-APP" />
+</a>
+</br>
+
  

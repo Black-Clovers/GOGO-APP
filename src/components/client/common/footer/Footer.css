@@ -1,0 +1,81 @@
+.wrapper .top_navbar {
+    width: calc(100% - 20px);
+    height: 60px;
+    display: flex;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+
+.wrapper .top_navbar .hamburger {
+    width: 70px;
+    height: 100%;
+    background: linear-gradient(0deg, #2B4B43, #2B4B43);
+    padding: 15px 17px;
+    border-top-left-radius: 20px;
+    cursor: pointer;
+}
+
+.wrapper .top_navbar .hamburger div {
+    width: 35px;
+    height: 4px;
+    background: #FFFFFF;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.wrapper .top_navbar .top_menu {
+    width: calc(100% - 70px);
+    height: 100%;
+    background: #fff;
+    border-top-right-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*padding: 0 20px;*/
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/*.wrapper .top_navbar .top_menu .logo {*/
+/*    color: #2e4ead;*/
+/*    font-size: 20px;*/
+/*    font-weight: 700;*/
+/*    letter-spacing: 3px;*/
+/*}*/
+
+.profileText {
+    background: conic-gradient(from 217.4deg at 14.22% 13.32%, #3EFFC4 0deg, #C1FFEC 123.75deg, #2B4B43 234.38deg, #3EFFC4 360deg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.logoutIcon {
+    transform: rotate(180deg);
+}
+
+.wrapper .top_navbar .top_menu ul {
+    display: flex;
+}
+
+.wrapper .top_navbar .top_menu ul li a {
+    display: block;
+    margin: 0 10px;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background: linear-gradient(0deg, #2B4B43, #2B4B43);
+    border-radius: 50%;
+    color: #FFFFFF;
+}
+
+.wrapper .top_navbar .top_menu ul li a:hover {
+    color: #fff;
+}
+
+.wrapper .top_navbar .top_menu ul li a:hover i {
+    color: #fff;
+}

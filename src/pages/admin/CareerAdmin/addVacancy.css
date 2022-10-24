@@ -1,0 +1,43 @@
+.vacancyheaderbar{
+    position: absolute;
+    width: 1106px;
+    height: 53px;
+    left: 290px;
+    top: 135px;
+    
+    background: #FFFFFF;
+    border-radius: 16px;
+
+}
+
+.vacancycontainer{
+
+    position: absolute;
+width: 1105px;
+height: 907px;
+left: 291px;
+top: 209px;
+
+background: #FFFFFF;
+border-radius: 16px;
+}
+
+.vacancyReportbutton{
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* light-green */
+
+background: conic-gradient(from 208.67deg at 9.44% -12.5%, #3EFFC4 0deg, #C1FFEC 123.75deg, #2B4B43 234.38deg, #3EFFC4 360deg);
+/* btn-border-line */
+
+border: 3px solid rgba(0, 0, 0, 0.24);
+box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 15px;
+}
+.alert-txt{
+    color: rgb(218, 18, 18);
+}
