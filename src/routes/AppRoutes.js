@@ -16,6 +16,8 @@ import RidePage from "../pages/client/ride/ridePage";
 import CareerList from "../pages/admin/CareerAdmin/CareerList";
 import CareerHome from "../pages/client/career/careerHome";
 import RegisterVacancy from "../pages/client/career/registerVacancy";
+import PackageCards from "../pages/client/travelPackage/Packagecards";
+import PackageDetails from "../pages/client/travelPackage/PackageDetails";
 
 
 const AppRoutes = () => {
@@ -31,11 +33,11 @@ const AppRoutes = () => {
                                 <main>
                                     <Switch>
                                         <Route path="/client" render={(props) => <HomePage/>} exact/>;
-                                        <Route path="/client/ride" render={(props) => <RidePage/>} />;
+                                        <Route path="/client/ride" render={(props) => <RidePage/>}/>;
                                         <Route path="/client/career" render={(props) => <CareerHome/>}/>;
-                                      <Route path="/client/registerVacancy" render={(props) => <RegisterVacancy/>}/>;
-                                      <Route path="/client/pkgdecards" render={(props) => <Packagecards/>}/>;
-                                    <Route path="/client/pkgdetails/:id" render={(props) => <PackageDetails/>}/>;
+                                        <Route path="/client/registerVacancy" render={(props) => <RegisterVacancy/>}/>;
+                                        <Route path="/client/pkgdecards" render={(props) => <PackageCards/>}/>;
+                                        <Route path="/client/pkgdetails/:id" render={(props) => <PackageDetails/>}/>;
                                     </Switch>
                                 </main>
                             </ClientLayout>
@@ -53,7 +55,7 @@ const AppRoutes = () => {
                                 <Route path="/admin/ride" render={(props) => <Ride/>}/>;
                                 <Route path="/admin/career" render={(props) => <Career/>}/>;
                                 <Route path="/admin/careerlist" render={(props) => <CareerList/>}/>;
-                                
+
 
                             </Switch>
                         </AdminLayout>
